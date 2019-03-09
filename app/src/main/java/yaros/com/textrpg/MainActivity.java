@@ -6,7 +6,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.HashMap;
+
+import yaros.com.textrpg.Chapter.Chapter;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static HashMap<Integer, Chapter> chapters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
