@@ -20,7 +20,20 @@ public class ChaptersCreator implements IChaptersCreator {
 
             String chapter = "chapter_" + i;
 
-            int[] variants = travelToNode.getChapterVariants(chapter);
+            int[] variantsa = travelToNode.getChapterVariants(chapter,'-');
+            int[] variantsb = travelToNode.getChapterVariants(chapter,'(');
+
+            int[] variants = new int[variantsa.length + variantsb.length];
+            for (int j = 0; j < variants.length; j++)
+            {
+                if(j < variantsa.length) {
+                    variants[j] = variantsa[j];
+                }else {
+                    variants[j] = variantsb[j - variantsa.length-1];
+                }
+            }
+            
+
 
             chapters.put(i, new Chapter());
         }
