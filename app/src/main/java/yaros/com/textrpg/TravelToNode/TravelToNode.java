@@ -3,8 +3,8 @@ package yaros.com.textrpg.TravelToNode;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-public class TravelToNode implements ITravelToNode {
-    @Override
+public class TravelToNode {
+
     public int[] getChapterVariants(String ChapterText, char separator) {
 
         ArrayList<Integer> travel = new ArrayList<Integer>();

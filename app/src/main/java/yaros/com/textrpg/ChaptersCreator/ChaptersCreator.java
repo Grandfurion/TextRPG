@@ -6,10 +6,10 @@ import yaros.com.textrpg.Chapter.Chapter;
 import yaros.com.textrpg.R;
 import yaros.com.textrpg.TravelToNode.TravelToNode;
 
-public class ChaptersCreator implements IChaptersCreator {
+public class ChaptersCreator {
 
 
-    @Override
+
     public static HashMap<Integer, Chapter> Generate() {
         String link = "R.string.chapter_";
         int initCap = 618;
@@ -32,7 +32,7 @@ public class ChaptersCreator implements IChaptersCreator {
                     variants[j] = variantsb[j - variantsa.length-1];
                 }
             }
-            
+
 
 
             chapters.put(i, new Chapter());
