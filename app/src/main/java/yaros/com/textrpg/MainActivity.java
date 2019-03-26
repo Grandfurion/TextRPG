@@ -16,10 +16,6 @@ public class MainActivity extends AppCompatActivity {
     public static HashMap<Integer, Chapter> chapters;
 
 
-    /*public MainActivity(){
-        chapters = ChaptersCreator.Generate(this);
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

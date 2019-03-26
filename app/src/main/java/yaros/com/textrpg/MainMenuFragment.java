@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +31,9 @@ public class MainMenuFragment extends Fragment {
 
         Button button = getView().findViewById(R.id.startButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                button.setText(MainActivity.chapters.get(154).CHAPTER_TEXT);
-
-                //FragmentManager.beginTransaction
-            }
+        button.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, PageFragment.Create()).commit();
         });
 
         super.onViewCreated(view, savedInstanceState);
