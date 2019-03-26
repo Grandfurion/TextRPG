@@ -13,7 +13,6 @@ public class ChaptersCreator {
 
 
     public static HashMap<Integer, Chapter> Generate(Context context) {
-        String link = "R.string.chapter_";
         int initCap = 618;
         HashMap<Integer,Chapter> chapters = new HashMap<>(initCap);
 
