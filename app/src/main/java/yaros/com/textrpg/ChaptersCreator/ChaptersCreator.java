@@ -20,8 +20,8 @@ public class ChaptersCreator {
 
             String chapter = "chapter_" + i;
 
-            int[] variantsa = travelToNode.getChapterVariants(chapter,'-');
-            int[] variantsb = travelToNode.getChapterVariants(chapter,'(');
+            int[] variantsa = travelToNode.getChapterVariants(chapter);
+            int[] variantsb = travelToNode.getChapterVariants(chapter);
 
             int[] variants = new int[variantsa.length + variantsb.length];
             for (int j = 0; j < variants.length; j++)

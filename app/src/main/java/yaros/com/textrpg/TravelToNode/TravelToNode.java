@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class TravelToNode {
 
-    public int[] getChapterVariants(String ChapterText, char separator) {
+    public int[] getChapterVariants(String ChapterText) {
 
         ArrayList<Integer> travel = new ArrayList<Integer>();
 
         for (int first = 0; first < ChapterText.length(); first++)
         {
-            if (ChapterText.charAt(first) == separator)
+            if (ChapterText.charAt(first) == '—' && ChapterText.charAt(first) == '(')
             {
-                if (separator == '—')
+                if (ChapterText.charAt(first) == '—')
                 {
                     first++;
                 }
