@@ -16,14 +16,19 @@ public class MainActivity extends AppCompatActivity {
     public static HashMap<Integer, Chapter> chapters;
 
 
+    /*public MainActivity(){
+        chapters = ChaptersCreator.Generate(this);
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final HashMap<Integer, Chapter> chapters = ChaptersCreator.Generate(this);
+        chapters = ChaptersCreator.Generate(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, MainMenuFragment.Create()).commit();
      }
+
 }
