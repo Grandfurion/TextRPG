@@ -38,7 +38,7 @@ public class MainMenuFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.chapters = //
+                button.setText(MainActivity.chapters.get(154).CHAPTER_TEXT);
 
                 //FragmentManager.beginTransaction
             }
