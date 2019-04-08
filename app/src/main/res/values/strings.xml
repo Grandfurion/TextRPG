@@ -3152,4 +3152,8 @@ cвернете к озеру - 12.
 
 </string>
 
+
+    <string name="character_info">Инвентарь</string>
+    <string name="chapter_info">Глава</string>
+    <string name="information">Информация</string>
 </resources>

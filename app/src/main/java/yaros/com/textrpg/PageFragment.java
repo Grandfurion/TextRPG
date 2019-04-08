@@ -1,9 +1,9 @@
 package yaros.com.textrpg;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +46,8 @@ public class PageFragment extends Fragment {
 
         final TextView pageText = getView().findViewById(R.id.pageText);
         final LinearLayout linearLayout = getView().findViewById(R.id.buttonsLayout);
+
+        MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
 
         Update(id, pageText, linearLayout);
         //MainActivity.chapters.get(id);

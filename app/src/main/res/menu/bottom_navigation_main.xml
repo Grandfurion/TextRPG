@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/character_info" android:icon="@drawable/ic_character_info_24dp" android:id="@+id/assignments"/>
+
+    <item android:title="@string/chapter_info" android:icon="@drawable/ic_chapter_info_24dp" android:id="@+id/users"/>
+
+    <item android:title="@string/information" android:icon="@drawable/ic_information_24dp" android:id="@+id/books"/>
+</menu>
