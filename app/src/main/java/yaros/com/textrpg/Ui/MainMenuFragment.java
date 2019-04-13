@@ -16,9 +16,9 @@ import android.widget.Button;
 
 public class MainMenuFragment extends Fragment {
 
-    public final String TAG = "MainMenuFragment";
+    public static final String TAG = "MainMenuFragment";
 
-    public static MainMenuFragment Create(){
+    public static MainMenuFragment create(){
         return new MainMenuFragment();
     }
 
@@ -32,12 +32,13 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         Button button = getView().findViewById(R.id.startButton);
-
         button.setOnClickListener(v -> {
             FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.container, PageFragment.Create()).commit();
+            MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+            MainActivity.bottomNavigationView.setSelectedItemId(R.id.chapter_info);
+            fragmentManager.beginTransaction().remove(fragmentManager.findFragmentByTag(MainActivity.displayedTag));
         });
-
         super.onViewCreated(view, savedInstanceState);
     }
+
 }

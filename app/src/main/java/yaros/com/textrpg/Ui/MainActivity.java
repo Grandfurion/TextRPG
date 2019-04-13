@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 
+import androidx.fragment.app.FragmentTransaction;
 import yaros.com.textrpg.Chapter.Chapter;
 import yaros.com.textrpg.ChaptersCreator.ChaptersCreator;
 import yaros.com.textrpg.R;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static BottomNavigationView bottomNavigationView;
 
+    private static final String KEY_SELECTED_TAG = "KEY_SELECTED_TAG";
+
+    public static String displayedTag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +35,64 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
-        bottomNavigationView.setVisibility(View.GONE);
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, MainMenuFragment.Create()).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, MainMenuFragment.create(), "MainMenuFragment").commit();
+        displayedTag = "MainMenuFragment";
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            if (menuItem.getItemId() == bottomNavigationView.getSelectedItemId()) return true;
+            FragmentManager fm = getSupportFragmentManager();
+            switch (menuItem.getItemId()) {
+                case R.id.character_info:
+                    showFragment(CharacterInfoFragment.TAG, CharacterInfoFragment::create, fm);
+                    return true;
+                case R.id.chapter_info:
+                    showFragment(PageFragment.TAG, PageFragment::сreateFragment, fm);
+                    return true;
+                case R.id.information:
+                    showFragment(InformationFragment.TAG, InformationFragment::create, fm);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        if (savedInstanceState == null) {
+            } else {
+                displayedTag = savedInstanceState.getString(KEY_SELECTED_TAG);
+            }
+        bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString(KEY_SELECTED_TAG, displayedTag);
+        super.onSaveInstanceState(outState);
+    }
+
+
+     public static void showFragment(String tag, FragmentFactory fragmentFactory,
+                                     FragmentManager fm){
+
+         FragmentTransaction tx = fm.beginTransaction();
+
+         Fragment currentFragment = fm.findFragmentByTag(displayedTag);
+         if (currentFragment != null) {
+             tx.hide(currentFragment);
+         }
+
+         Fragment fragment = fm.findFragmentByTag(tag);
+         if (fragment != null) {
+             tx.show(fragment);
+         } else {
+             fragment = fragmentFactory.createFragment();
+             tx.add(R.id.container, fragment, tag);
+         }
+         tx.setPrimaryNavigationFragment(fragment);
+         displayedTag = tag;
+
+         tx.commit();
      }
 
-
-     @Override
-     public crea
-
-     private interface FragmentFactory{
+     public interface FragmentFactory{
         Fragment createFragment();
      }
 

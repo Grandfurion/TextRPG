@@ -12,9 +12,9 @@ import yaros.com.textrpg.R;
 
 public class InformationFragment extends Fragment {
 
-    public final String TAG = "InformationFragment";
+    public static final String TAG = "InformationFragment";
 
-    public InformationFragment create(){
+    public static InformationFragment create(){
         return new InformationFragment();
     }
 

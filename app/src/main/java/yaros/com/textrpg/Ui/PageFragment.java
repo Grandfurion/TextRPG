@@ -15,11 +15,11 @@ import android.widget.TextView;
 
 public class PageFragment extends Fragment {
 
-    public final String TAG = "PageFragment";
+    public static final String TAG = "PageFragment";
 
     public static int id = 0;
 
-    public static PageFragment Create() {
+    public static PageFragment сreateFragment() {
         return new PageFragment();
     }
 
@@ -48,8 +48,6 @@ public class PageFragment extends Fragment {
 
         final TextView pageText = getView().findViewById(R.id.pageText);
         final LinearLayout linearLayout = getView().findViewById(R.id.buttonsLayout);
-
-        MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
 
         Update(id, pageText, linearLayout);
         //MainActivity.chapters.get(id);
