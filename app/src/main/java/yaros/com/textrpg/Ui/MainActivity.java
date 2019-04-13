@@ -1,5 +1,6 @@
-package yaros.com.textrpg;
+package yaros.com.textrpg.Ui;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 
 import yaros.com.textrpg.Chapter.Chapter;
 import yaros.com.textrpg.ChaptersCreator.ChaptersCreator;
+import yaros.com.textrpg.R;
+import yaros.com.textrpg.Ui.MainMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, MainMenuFragment.Create()).commit();
+     }
+
+
+     @Override
+     public crea
+
+     private interface FragmentFactory{
+        Fragment createFragment();
      }
 
 }
