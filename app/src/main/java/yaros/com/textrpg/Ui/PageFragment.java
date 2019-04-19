@@ -1,6 +1,7 @@
 package yaros.com.textrpg.Ui;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class PageFragment extends Fragment {
 
     public static final String TAG = "PageFragment";
@@ -23,17 +26,36 @@ public class PageFragment extends Fragment {
         return new PageFragment();
     }
 
-    public void Update(int new_id, TextView pageText, LinearLayout linearLayout){
+    public static ArrayList<Button> buttons = new ArrayList<>();
+
+    public void Update(int new_id, TextView pageText) {
         id = new_id;
 
         pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);
-        int i = 0;
+        /*int i = 0;
         for (int variant :MainActivity.chapters.get(id).CHAPTER_VARIANTIDS) {
             Button button = new Button(this.getContext());
             button.setText((MainActivity.chapters.get(id).CHAPTER_VARIANTIDS[i]));
             linearLayout.addView(button);
             i++;
             //СОЗДАЕМ КНОПКИ ДИНАМИЧНО (ИЛИ НЕ ОЧЕНЬ)
+        }*/
+        for (Button b : buttons) {
+            b.setVisibility(View.GONE);
+        }
+
+        int j = 0;
+        for (int i : MainActivity.getChapters().get(id).CHAPTER_VARIANTIDS) {
+            Button b = buttons.get(j);
+            b.setVisibility(View.VISIBLE);
+            b.setText(i);
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Update(i, pageText);
+                }
+            });
+            j++;
         }
     }
 
@@ -49,7 +71,13 @@ public class PageFragment extends Fragment {
         final TextView pageText = getView().findViewById(R.id.pageText);
         final LinearLayout linearLayout = getView().findViewById(R.id.buttonsLayout);
 
-        Update(id, pageText, linearLayout);
+        buttons.add(getView().findViewById(R.id.button1));
+        buttons.add(getView().findViewById(R.id.button2));
+        buttons.add(getView().findViewById(R.id.button3));
+        buttons.add(getView().findViewById(R.id.button4));
+        buttons.add(getView().findViewById(R.id.button5));
+
+        Update(id, pageText);
         //MainActivity.chapters.get(id);
 
         super.onViewCreated(view, savedInstanceState);

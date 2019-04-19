@@ -96,4 +96,12 @@ public class MainActivity extends AppCompatActivity {
         Fragment createFragment();
      }
 
+     public static HashMap<Integer, Chapter> getChapters(){
+        return chapters;
+     }
+
+     /*public String mGetString(int resId){
+        return this.getString(resId);
+     }*/
+
 }
