@@ -32,14 +32,6 @@ public class PageFragment extends Fragment {
         id = new_id;
 
         pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);
-        /*int i = 0;
-        for (int variant :MainActivity.chapters.get(id).CHAPTER_VARIANTIDS) {
-            Button button = new Button(this.getContext());
-            button.setText((MainActivity.chapters.get(id).CHAPTER_VARIANTIDS[i]));
-            linearLayout.addView(button);
-            i++;
-            //СОЗДАЕМ КНОПКИ ДИНАМИЧНО (ИЛИ НЕ ОЧЕНЬ)
-        }*/
         for (Button b : buttons) {
             b.setVisibility(View.GONE);
         }
