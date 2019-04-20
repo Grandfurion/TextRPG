@@ -25,11 +25,8 @@ public class TravelToNode {
                     first++;
                 }
                 StringBuilder StrBulid = new StringBuilder();
-                //while ( ChapterText.charAt(first) > 47 && ChapterText.charAt(first) < 58)
-                while (ChapterText.charAt(first) == 1 || ChapterText.charAt(first) == 2 || ChapterText.charAt(first) == 3 ||
-                        ChapterText.charAt(first) == 4 || ChapterText.charAt(first) == 5 || ChapterText.charAt(first) == 6 ||
-                        ChapterText.charAt(first) == 7 || ChapterText.charAt(first) == 8 || ChapterText.charAt(first) == 9 ||
-                        ChapterText.charAt(first) == 0) {
+                while (Character.isDigit(ChapterText.charAt(first)))
+                {
                     StrBulid.append(ChapterText.charAt(first + 1));
                     first++;
                 }
