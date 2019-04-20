@@ -48,7 +48,7 @@ public class PageFragment extends Fragment {
         for (int i : MainActivity.getChapters().get(id).CHAPTER_VARIANTIDS) {
             Button b = buttons.get(j);
             b.setVisibility(View.VISIBLE);
-            b.setText(i);
+            b.setText(String.valueOf(i));
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
