@@ -9,6 +9,8 @@ public class CheckIsUpperString{
         boolean flag = false;
 
         ArrayList<String> rows = cutToRows(str);
+        //if(rows.size() > 2)
+        //{flag = true;}
         for (String row : rows) {
 
             int count = 0;
@@ -17,12 +19,18 @@ public class CheckIsUpperString{
                 if (row.charAt(i) == ' ' || Character.isUpperCase(row.charAt(i)) || row.charAt(i)== '\n') {
                     count++;
                 }
-            }
+
+
+             }
+           // if(row.equals(row.toUpperCase())){
+           //     flag = true;
+           // }
+
             if((count == row.length()) ? true : false){
                 flag = true;
             }
         }
-        //return (count == str.length()) ? true : false;
+        //return (count == str.length()) ? true : false;*/
         return flag;
     }
 
