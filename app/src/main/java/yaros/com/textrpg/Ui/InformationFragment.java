@@ -28,9 +28,9 @@ public class InformationFragment extends Fragment {
 
     public final int DIALOG_ADD = 1;
 
-    public static final String TAG = "InformationFragment";
+    static EditText editText;
 
-    EditText ed;
+    public static final String TAG = "InformationFragment";
 
     public static InformationFragment create() {
         return new InformationFragment();
@@ -59,7 +59,7 @@ public class InformationFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (informNum < 15) {
+                if (informNum < 14) {
                     alertDialog.show();
                 } else {
                     Toast.makeText(getContext(), "максимум заметок", Toast.LENGTH_SHORT).show();
@@ -75,8 +75,9 @@ public class InformationFragment extends Fragment {
             AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
             adb.setTitle(R.string.information_dialog_title);
             adb.setMessage(R.string.information_dialog_message);
-            ed = getView().findViewById(R.id.input);
-            adb.setView(ed);
+            EditText dialogEditText = new EditText(getContext());
+            adb.setView(dialogEditText);
+            editText = dialogEditText;
             adb.setIcon(R.drawable.ic_information_24dp);
             adb.setPositiveButton(R.string.dialog_positive_button, myClickListener);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListener);
@@ -90,7 +91,7 @@ public class InformationFragment extends Fragment {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
                     informations.get(informNum).setVisibility(View.VISIBLE);
-                    informations.get(informNum).setText(ed.getText());
+                    informations.get(informNum).setText(editText.getText());
                     informNum++;
                     break;
                 case Dialog.BUTTON_NEGATIVE:
