@@ -3162,4 +3162,10 @@ cвернете к озеру - 12.
 
     <string name="dialog_positive_button">Создать</string>
     <string name="dialog_negative_button">Отмена</string>
+
+    <string name="inventory_gold">Деньги</string>
+    <string name="inventory_stamina">Выносливость</string>
+    <string name="inventory_mastery">Мастерство</string>
+    <string name="inventory_fortune">Удача</string>
+
 </resources>

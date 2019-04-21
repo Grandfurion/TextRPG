@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +16,9 @@ import yaros.com.textrpg.R;
 public class CharacterInfoFragment extends Fragment {
 
     public static final String TAG = "CharacterInfoFragment";
+
+    ArrayList<TextView> spells;
+    ArrayList<TextView> items;
 
     public static CharacterInfoFragment create(){
         return new CharacterInfoFragment();
@@ -27,8 +33,16 @@ public class CharacterInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        //CODE
+        ArrayList<TextView> spells = new ArrayList<>(10);
+
+        for (int i = 0; i < 10; i++){
+
+        }
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public void updateCharacterInfo(){
+
     }
 }

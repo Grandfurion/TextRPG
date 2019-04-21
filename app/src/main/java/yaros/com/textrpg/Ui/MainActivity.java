@@ -8,17 +8,20 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import androidx.fragment.app.FragmentTransaction;
 import yaros.com.textrpg.Chapter.Chapter;
 import yaros.com.textrpg.ChaptersCreator.ChaptersCreator;
+import yaros.com.textrpg.Characters.Enemy;
 import yaros.com.textrpg.R;
 import yaros.com.textrpg.Ui.MainMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     public static HashMap<Integer, Chapter> chapters;
+    public static HashMap<Integer, ArrayList<Enemy>> battleChapters;
 
     public static BottomNavigationView bottomNavigationView;
 
