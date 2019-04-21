@@ -28,6 +28,7 @@ public class CharacterInfoFragment extends Fragment {
     static TextView tvStamina;
     static TextView tvMastery;
     static TextView tvFortune;
+    static TextView tvMoney;
 
     public static CharacterInfoFragment create(){
         return new CharacterInfoFragment();
@@ -46,13 +47,19 @@ public class CharacterInfoFragment extends Fragment {
         tvStamina = getView().findViewById(R.id.textViewStamina1);
         tvMastery = getView().findViewById(R.id.textViewMastery1);
         tvFortune = getView().findViewById(R.id.textViewFortune1);
+        tvMoney = getView().findViewById(R.id.textViewGold1);
+
 
         Button buttonCheckFortune = getView().findViewById(R.id.buttonCheckFortune);
         buttonCheckFortune.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean luck = MainActivity.mainCharacter.checkFortune();
                 Toast ifLuck = new Toast(getContext());
+                if (MainActivity.mainCharacter.fortune <= 0){
+                    ifLuck.makeText(getContext(), R.string.luck_check_no_fortune, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                boolean luck = MainActivity.mainCharacter.checkFortune();
                 if (luck){
                     ifLuck.makeText(getContext(), R.string.luck_check_true, Toast.LENGTH_SHORT).show();
                 }else {
@@ -80,9 +87,10 @@ public class CharacterInfoFragment extends Fragment {
     public static void updateCharacterInfo(){
         try {
             textViewSword.setText("Меч: " + MainActivity.mainCharacter.sword);
-            tvStamina.setText(MainActivity.mainCharacter.stamina);
-            tvMastery.setText(MainActivity.mainCharacter.mastery);
-            tvFortune.setText(MainActivity.mainCharacter.fortune);
+            tvStamina.setText("" + MainActivity.mainCharacter.stamina);
+            tvMastery.setText("" + MainActivity.mainCharacter.mastery);
+            tvFortune.setText("" + MainActivity.mainCharacter.fortune);
+            tvMoney.setText("" + MainActivity.mainCharacter.money);
 
         }catch(Exception e){
             Log.e("Warn", "Item did'nt generated yet");

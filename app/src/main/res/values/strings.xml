@@ -3168,6 +3168,7 @@ cвернете к озеру - 12.
 
     <string name="luck_check_true">Вы удачливы</string>
     <string name="luck_check_false">Вы неудачливы</string>
+    <string name="luck_check_no_fortune">Фортуна вам не улыбается</string>
     <string name="button_check_fortune">Проверить \n Удачу</string>
 
 </resources>
