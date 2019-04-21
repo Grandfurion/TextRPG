@@ -3156,4 +3156,11 @@ cвернете к озеру - 12.
     <string name="character_info">Инвентарь</string>
     <string name="chapter_info">Глава</string>
     <string name="information">Информация</string>
+
+    <string name="information_dialog_title">Новая Записка</string>
+    <string name="information_dialog_message">Описание:</string>
+
+
+    <string name="dialog_positive_button">Создать</string>
+    <string name="dialog_negative_button">Отмена</string>
 </resources>
