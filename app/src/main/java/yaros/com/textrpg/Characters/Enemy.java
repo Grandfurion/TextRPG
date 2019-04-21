@@ -3,11 +3,11 @@ import yaros.com.textrpg.Cube.Cube;
 
 public class Enemy {
 
-    public static String name;
-    public int mastery;
-    public int stamina;
-    public int impactPower;
-    int damage;
+    public static String name; // Имя
+    public int mastery;        // мастерство
+    public int stamina;        // выносливость
+    public int impactPower;    // Сила удара
+    int damage;                // Урон
 
     public Enemy(String name,int mastery, int stamina, int impactPower, int damage)
     {
