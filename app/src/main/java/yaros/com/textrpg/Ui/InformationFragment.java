@@ -27,8 +27,11 @@ public class InformationFragment extends Fragment {
     public static ArrayList<TextView> informations;
 
     public final int DIALOG_ADD = 1;
+    public final int DIALOG_DELETE = 2;
 
     static EditText editText;
+
+    static int selectToDeleteTvNum;
 
     public static final String TAG = "InformationFragment";
 
@@ -48,11 +51,19 @@ public class InformationFragment extends Fragment {
         informNum = 0;
 
         AlertDialog alertDialog = onCreateDialog(DIALOG_ADD);
+        AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
 
         informations = new ArrayList<TextView>(15);
         for (int i = 0; i < 15; i++) {
             informations.add(getView().findViewById(this.getResources().getIdentifier(("informationText" + i),
                     "id", getContext().getPackageName())));
+            informations.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectToDeleteTvNum = informations.indexOf(v);
+                    alertDialogDelete.show();
+                }
+            });
         }
 
         FloatingActionButton fab = getView().findViewById(R.id.informationFloatingActionButton);
@@ -82,6 +93,13 @@ public class InformationFragment extends Fragment {
             adb.setPositiveButton(R.string.dialog_positive_button, myClickListener);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListener);
             return adb.create();
+        }else if (id == DIALOG_DELETE) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+            adb.setMessage(R.string.information_delete_dialog_title);
+            adb.setIcon(R.drawable.ic_information_24dp);
+            adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerDeleteDialog);
+            adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerDeleteDialog);
+            return adb.create();
         }
         return onCreateDialog(id);
     }
@@ -93,6 +111,23 @@ public class InformationFragment extends Fragment {
                     informations.get(informNum).setVisibility(View.VISIBLE);
                     informations.get(informNum).setText(editText.getText());
                     informNum++;
+                    break;
+                case Dialog.BUTTON_NEGATIVE:
+                    break;
+            }
+        }
+    };
+
+    DialogInterface.OnClickListener myClickListenerDeleteDialog = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case Dialog.BUTTON_POSITIVE:
+                    for (int i = selectToDeleteTvNum; i < 14; i++){
+                        informations.get(i).setText(informations.get(i + 1).getText());
+                    }
+                    informNum--;
+                    informations.get(informNum).setText("");
+                    informations.get(informNum).setVisibility(View.GONE);
                     break;
                 case Dialog.BUTTON_NEGATIVE:
                     break;

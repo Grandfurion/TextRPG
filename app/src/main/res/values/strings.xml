@@ -3160,6 +3160,9 @@ cвернете к озеру - 12.
     <string name="information_dialog_title">Новая Записка</string>
     <string name="information_dialog_message">Описание:</string>
 
+    <string name="information_delete_dialog_title">Удалить записку?</string>
+
+    <string name="dialog_delete_negative_button">Да</string>
 
     <string name="dialog_positive_button">Создать</string>
     <string name="dialog_negative_button">Отмена</string>
