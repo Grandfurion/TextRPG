@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import yaros.com.textrpg.Chapter.Chapter;
 import yaros.com.textrpg.ChaptersCreator.ChaptersCreator;
 import yaros.com.textrpg.Characters.Enemy;
+import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.R;
 import yaros.com.textrpg.Ui.MainMenuFragment;
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static HashMap<Integer, Chapter> chapters;
     public static HashMap<Integer, ArrayList<Enemy>> battleChapters = new HashMap<>();
+
+    public static MainCharacter mainCharacter;
 
     public static BottomNavigationView bottomNavigationView;
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainCharacter = new MainCharacter();
 
         chapters = ChaptersCreator.Generate(this);
 

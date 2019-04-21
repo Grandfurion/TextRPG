@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutFlask"
-        android:layout_width="260dp"
+        android:layout_width="180dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -26,12 +26,14 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutGold"
-        android:layout_width="130dp"
+        android:layout_width="80dp"
         android:layout_height="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="8dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCheckFortune"
+        app:layout_constraintStart_toEndOf="@+id/linearLayoutFlask"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutStats">
 
         <TextView
@@ -331,5 +333,15 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonCheckFortune"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/button_check_fortune"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutStats" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

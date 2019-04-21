@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.R;
 
 import android.view.LayoutInflater;

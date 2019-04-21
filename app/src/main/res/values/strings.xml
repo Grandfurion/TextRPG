@@ -3166,4 +3166,8 @@ cвернете к озеру - 12.
     <string name="inventory_mastery">Мастерство</string>
     <string name="inventory_fortune">Удача</string>
 
+    <string name="luck_check_true">Вы удачливы</string>
+    <string name="luck_check_false">Вы неудачливы</string>
+    <string name="button_check_fortune">Проверить \n Удачу</string>
+
 </resources>

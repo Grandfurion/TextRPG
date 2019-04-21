@@ -1,5 +1,6 @@
 package yaros.com.textrpg.Ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,12 +31,13 @@ public class PageFragment extends Fragment {
 
     public static ArrayList<Button> buttons = new ArrayList<>();
 
+    @SuppressLint("ResourceAsColor")
     public void Update(int new_id, TextView pageText) {
         id = new_id;
         if (id == 568){
-            MainCharacter.sword = "Смерть Орков";
+            MainActivity.mainCharacter.sword = "Смерть Орков";
         }else if(id == 126){
-            MainCharacter.sword = "Меч Зеленого Рыцаря";
+            MainActivity.mainCharacter.sword = "Меч Зеленого Рыцаря";
         }
 
 
@@ -53,7 +55,7 @@ public class PageFragment extends Fragment {
             buttons.get(j).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //STARTUEM FRAGMENT BITVI!!!
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new BattleFragment(), BattleFragment.TAG).commit();
                 }
             });
             j++;
