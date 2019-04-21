@@ -33,10 +33,11 @@ public class CharacterInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        ArrayList<TextView> spells = new ArrayList<>(10);
+        spells = new ArrayList<>(10);
+        items = new ArrayList<>(9);
 
         for (int i = 0; i < 10; i++){
-
+            spells.add(getResources().getIdentifier("textViewSpell" + ))
         }
 
         super.onViewCreated(view, savedInstanceState);

@@ -250,6 +250,14 @@
             tools:layout_editor_absoluteY="322dp">
 
             <TextView
+                android:id="@+id/textViewSpell0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/textViewSpell1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -315,14 +323,6 @@
 
             <TextView
                 android:id="@+id/textViewSpell9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="18sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/textViewSpell10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
