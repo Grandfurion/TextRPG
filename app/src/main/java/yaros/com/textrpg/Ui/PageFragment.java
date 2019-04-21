@@ -5,8 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import yaros.com.textrpg.CheckUpperString.CheckIsUpperString;
 import yaros.com.textrpg.R;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,15 @@ public class PageFragment extends Fragment {
 
     public static ArrayList<Button> buttons = new ArrayList<>();
 
+    public boolean isBattle;
+
     public void Update(int new_id, TextView pageText) {
         id = new_id;
+        isBattle = CheckIsUpperString.checkIsUpperString(getString(MainActivity.getChapters().get(id).CHAPTER_TEXT));
+
+        if(isBattle){
+            buttons.get(0).setText("BATTTTTLE");
+        }
 
         pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);
         for (Button b : buttons) {

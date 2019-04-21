@@ -6,8 +6,8 @@ import yaros.com.textrpg.Characters.MainCharacter;
 
 public class Battle {
 
-    MainCharacter hero = new MainCharacter();
-    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    MainCharacter hero;
+    ArrayList<Enemy> enemies;
     Enemy enemy;
 
     public Battle(MainCharacter hero, Enemy enemy)

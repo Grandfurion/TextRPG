@@ -3,9 +3,9 @@ package yaros.com.textrpg.CheckUpperString;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CheckIsUpperString implements ChackIsUpperString {
-    @Override
-    public boolean checkIsUpperString(String str) {
+public class CheckIsUpperString {
+
+    public static boolean checkIsUpperString(String str) {
         boolean flag = false;
 
         ArrayList<String> rows = cutToRows(str);
@@ -26,8 +26,7 @@ public class CheckIsUpperString implements ChackIsUpperString {
         return flag;
     }
 
-    @Override
-    public ArrayList<String> cutToRows(String chapterText) {
-        return new ArrayList<String>(Arrays.asList(chapterText.split("\\n")));
+    public static ArrayList<String> cutToRows(String chapterText) {
+        return new ArrayList<String>(Arrays.asList(chapterText.split("\n")));
     }
 }
