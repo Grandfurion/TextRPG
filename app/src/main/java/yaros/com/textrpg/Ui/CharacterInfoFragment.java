@@ -37,7 +37,7 @@ public class CharacterInfoFragment extends Fragment {
         items = new ArrayList<>(9);
 
         for (int i = 0; i < 10; i++){
-            spells.add(getResources().getIdentifier("textViewSpell" + i), "id", )
+           // spells.add(getResources().getIdentifier("textViewSpell" + i), "id", )
         }
 
         super.onViewCreated(view, savedInstanceState);

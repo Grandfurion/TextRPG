@@ -34,7 +34,8 @@ public class ChaptersCreator {
             int chapId = context.getResources().getIdentifier(("chapter_" + i),"string", context.getPackageName());
 
             if(CheckIsUpperString.checkIsUpperString(context.getString(chapId))){
-                MainActivity.battleChapters.put(chapId, FindeEnemy.FindeEnemy(context.getString(chapId)));
+                ArrayList<Enemy> enemies = FindeEnemy.FindeEnemy(context.getString(chapId));
+                MainActivity.battleChapters.put(i, enemies);
             }
 
             int[] variants = GetVariants.getVariants(chapId, context);

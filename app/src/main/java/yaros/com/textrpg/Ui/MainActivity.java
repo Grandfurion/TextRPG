@@ -21,7 +21,7 @@ import yaros.com.textrpg.Ui.MainMenuFragment;
 public class MainActivity extends AppCompatActivity {
 
     public static HashMap<Integer, Chapter> chapters;
-    public static HashMap<Integer, ArrayList<Enemy>> battleChapters;
+    public static HashMap<Integer, ArrayList<Enemy>> battleChapters = new HashMap<>();
 
     public static BottomNavigationView bottomNavigationView;
 

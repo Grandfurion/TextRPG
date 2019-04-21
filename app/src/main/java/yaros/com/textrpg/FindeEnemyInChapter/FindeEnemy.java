@@ -27,7 +27,7 @@ public class FindeEnemy {
                 i++;
 
                 String[] narr = rows.get(i).split(" ");
-                int stamina = Integer.parseInt(arr[i]);
+                int stamina = Integer.parseInt(narr[1]);
 
                 Enemy en = new Enemy(name,mastery,stamina,0,damage);
                 enemies.add(en);

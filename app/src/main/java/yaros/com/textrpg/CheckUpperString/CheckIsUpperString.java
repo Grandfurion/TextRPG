@@ -16,7 +16,8 @@ public class CheckIsUpperString{
             int count = 0;
             for (int i = 0; i < row.length(); i++) {
 
-                if (row.charAt(i) == ' ' || Character.isUpperCase(row.charAt(i)) || row.charAt(i)== '\n') {
+                if (row.charAt(i) == ' ' || Character.isUpperCase(row.charAt(i)) || row.charAt(i)== '\n'
+                    || row.charAt(i) == '_') {
                     count++;
                 }
 
