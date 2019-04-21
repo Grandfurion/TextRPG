@@ -3,7 +3,7 @@ package yaros.com.textrpg.CheckUpperString;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CheckIsUpperString {
+public class CheckIsUpperString{
 
     public static boolean checkIsUpperString(String str) {
         boolean flag = false;
@@ -14,7 +14,7 @@ public class CheckIsUpperString {
             int count = 0;
             for (int i = 0; i < row.length(); i++) {
 
-                if (row.charAt(i) == ' ' || Character.isUpperCase(row.charAt(i))) {
+                if (row.charAt(i) == ' ' || Character.isUpperCase(row.charAt(i)) || row.charAt(i)== '\n') {
                     count++;
                 }
             }
@@ -25,6 +25,7 @@ public class CheckIsUpperString {
         //return (count == str.length()) ? true : false;
         return flag;
     }
+
 
     public static ArrayList<String> cutToRows(String chapterText) {
         return new ArrayList<String>(Arrays.asList(chapterText.split("\n")));
