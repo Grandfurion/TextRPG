@@ -3,10 +3,14 @@ package yaros.com.textrpg.ChaptersCreator;
 import android.content.Context;
 import android.content.res.Resources;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import yaros.com.textrpg.Chapter.Chapter;
+import yaros.com.textrpg.Characters.Enemy;
+import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.CheckUpperString.CheckIsUpperString;
+import yaros.com.textrpg.FindeEnemyInChapter.FindeEnemy;
 import yaros.com.textrpg.R;
 import yaros.com.textrpg.TravelToNode.GetVariants;
 import yaros.com.textrpg.TravelToNode.TravelToNode;
@@ -29,12 +33,13 @@ public class ChaptersCreator {
 
             int chapId = context.getResources().getIdentifier(("chapter_" + i),"string", context.getPackageName());
 
-           /* if (CheckIsUpperString.checkIsUpperString(context.getString(chapId))){
-                //DOPISAT` ENEMY!!!
-                MainActivity.battleChapters.put(chapId, )
-            }*/
+            if(CheckIsUpperString.checkIsUpperString(context.getString(chapId))){
+                ArrayList<Enemy> enemies = FindeEnemy.FindeEnemy(context.getString(chapId));
+                MainActivity.battleChapters.put(i, enemies);
+            }
 
             int[] variants = GetVariants.getVariants(chapId, context);
+
             chapters.put(i, new Chapter(i, chapId, variants));
         }
         return chapters;
