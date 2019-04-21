@@ -29,10 +29,10 @@ public class ChaptersCreator {
 
             int chapId = context.getResources().getIdentifier(("chapter_" + i),"string", context.getPackageName());
 
-            /*if (CheckIsUpperString.checkIsUpperString(context.getString(chapId))){
+            if (CheckIsUpperString.checkIsUpperString(context.getString(chapId))){
                 //DOPISAT` ENEMY!!!
                 MainActivity.battleChapters.put(chapId, )
-            }*/
+            }
 
             int[] variants = GetVariants.getVariants(chapId, context);
             chapters.put(i, new Chapter(i, chapId, variants));
