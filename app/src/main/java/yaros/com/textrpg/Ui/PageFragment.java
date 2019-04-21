@@ -68,6 +68,7 @@ public class PageFragment extends Fragment {
         buttons.add(getView().findViewById(R.id.button3));
         buttons.add(getView().findViewById(R.id.button4));
         buttons.add(getView().findViewById(R.id.button5));
+        buttons.add(getView().findViewById(R.id.button6));
 
         Update(id, pageText);
         //MainActivity.chapters.get(id);
