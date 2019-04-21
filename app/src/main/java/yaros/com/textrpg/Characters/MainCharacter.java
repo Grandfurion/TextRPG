@@ -9,6 +9,9 @@ public class MainCharacter {
     public static int impactPower;  //Сила удара
     public static int damage;       //урон
     public static int money;        //деньги
+    public static String sword = "Стальной меч";
+    public static int flask;
+    // 1 - стальной меч, 2 - смерть орков (568), 3 - меч зеленого рыцаря(126);
     // при надобности добавить имя Меча
 
 
@@ -19,6 +22,7 @@ public class MainCharacter {
         fortune = Cube.ThrowOneCube() + 6;
         money = 15;
         damage = 2;     // кол-во урона
+        flask = 2;
     }
 
 
@@ -29,6 +33,7 @@ public class MainCharacter {
         this.impactPower = impactPower;
         this.damage = damage;
         this.money = money;
+        flask = 2;
     }
 
     public  boolean checkFortune()

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
      public static void showFragment(String tag, FragmentFactory fragmentFactory,
                                      FragmentManager fm){
-
+        CharacterInfoFragment.updateCharacterInfo();
          FragmentTransaction tx = fm.beginTransaction();
 
          Fragment currentFragment = fm.findFragmentByTag(displayedTag);

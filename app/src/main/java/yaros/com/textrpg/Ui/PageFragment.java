@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.R;
 
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PageFragment extends Fragment {
 
@@ -30,6 +32,12 @@ public class PageFragment extends Fragment {
 
     public void Update(int new_id, TextView pageText) {
         id = new_id;
+        if (id == 568){
+            MainCharacter.sword = "Смерть Орков";
+        }else if(id == 126){
+            MainCharacter.sword = "Меч Зеленого Рыцаря";
+        }
+
 
         pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);
         for (Button b : buttons) {
@@ -37,6 +45,18 @@ public class PageFragment extends Fragment {
         }
 
         int j = 0;
+
+        if (MainActivity.battleChapters.get(id) != null){
+            buttons.get(j).setText("Начать Битву");
+            buttons.get(j).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //STARTUEM FRAGMENT BITVI!!!
+                }
+            });
+            j++;
+        }
+
         for (int i : MainActivity.getChapters().get(id).CHAPTER_VARIANTIDS) {
             Button b = buttons.get(j);
             b.setVisibility(View.VISIBLE);

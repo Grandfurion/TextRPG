@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.R;
 
 public class InformationFragment extends Fragment {
@@ -108,9 +109,11 @@ public class InformationFragment extends Fragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
-                    informations.get(informNum).setVisibility(View.VISIBLE);
-                    informations.get(informNum).setText(editText.getText());
-                    informNum++;
+                    if (!editText.getText().toString().equals("")) {
+                        informations.get(informNum).setVisibility(View.VISIBLE);
+                        informations.get(informNum).setText(editText.getText());
+                        informNum++;
+                    }
                     break;
                 case Dialog.BUTTON_NEGATIVE:
                     break;
