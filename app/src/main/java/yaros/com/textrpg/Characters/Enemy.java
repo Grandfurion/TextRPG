@@ -7,7 +7,7 @@ public class Enemy {
     public int mastery;        // мастерство
     public int stamina;        // выносливость
     public int impactPower;    // Сила удара
-    int damage;                // Урон
+    public int damage;                // Урон
 
     public Enemy(String name,int mastery, int stamina, int impactPower, int damage)
     {
