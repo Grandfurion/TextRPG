@@ -55,7 +55,7 @@ public class PageFragment extends Fragment {
             buttons.get(j).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new BattleFragment(), BattleFragment.TAG).commit();
+                    //STARTUEM FRAGMENT BITVI!!!
                 }
             });
             j++;
