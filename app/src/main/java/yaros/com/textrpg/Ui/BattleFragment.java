@@ -15,6 +15,8 @@ public class BattleFragment extends Fragment {
 
     public static final String TAG = "BattleFragment";
 
+    public static StringBuilder Log;
+
     public BattleFragment create(){
         return new  BattleFragment();
     }
@@ -29,6 +31,8 @@ public class BattleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         TextView BattleLog = getView().findViewById(R.id.battleLog);
+
+        BattleLog.setText(Log);
 
         super.onViewCreated(view, savedInstanceState);
     }

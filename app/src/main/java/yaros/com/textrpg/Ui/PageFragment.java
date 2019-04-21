@@ -48,6 +48,8 @@ public class PageFragment extends Fragment {
 
         if (MainActivity.battleChapters.get(id) != null){
             buttons.get(j).setText("Начать Битву");
+            buttons.get(j).setVisibility(View.VISIBLE);
+            buttons.get(j).setBackgroundColor(R.color.colorAccent);
             buttons.get(j).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
