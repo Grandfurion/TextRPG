@@ -1,5 +1,6 @@
 package yaros.com.textrpg.Ui;
 
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,9 +37,6 @@ public class PageFragment extends Fragment {
         id = new_id;
         isBattle = CheckIsUpperString.checkIsUpperString(getString(MainActivity.getChapters().get(id).CHAPTER_TEXT));
 
-        if(isBattle){
-            buttons.get(0).setText("BATTTTTLE");
-        }
 
         pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);
         for (Button b : buttons) {
@@ -57,6 +55,9 @@ public class PageFragment extends Fragment {
                 }
             });
             j++;
+        }
+        if(isBattle){
+            buttons.get(0).setText("LOOL");
         }
     }
 

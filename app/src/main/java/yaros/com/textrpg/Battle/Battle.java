@@ -1,4 +1,6 @@
 package yaros.com.textrpg.Battle;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 import yaros.com.textrpg.Characters.Enemy;
@@ -6,6 +8,7 @@ import yaros.com.textrpg.Characters.MainCharacter;
 
 public class Battle {
 
+    TextView battleLog;
     MainCharacter hero;
     ArrayList<Enemy> enemies;
     Enemy enemy;
