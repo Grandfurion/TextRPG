@@ -56,9 +56,6 @@ public class PageFragment extends Fragment {
             });
             j++;
         }
-        if(isBattle){
-            buttons.get(0).setText("LOOL");
-        }
     }
 
     @Nullable
