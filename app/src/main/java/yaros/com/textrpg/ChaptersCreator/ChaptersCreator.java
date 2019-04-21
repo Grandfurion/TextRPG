@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import java.util.HashMap;
 
 import yaros.com.textrpg.Chapter.Chapter;
-import yaros.com.textrpg.CheckUpperString.CheckIsUpperString;
 import yaros.com.textrpg.R;
 import yaros.com.textrpg.TravelToNode.GetVariants;
 import yaros.com.textrpg.TravelToNode.TravelToNode;
@@ -27,14 +26,18 @@ public class ChaptersCreator {
         TravelToNode travelToNode = new TravelToNode();
         for(int i = 0; i<initCap; i++){
 
+            String chapter = "chapter_" + i;
+
             int chapId = context.getResources().getIdentifier(("chapter_" + i),"string", context.getPackageName());
 
-            if (CheckIsUpperString.checkIsUpperString(context.getString(chapId))){
-                //DOPISAT` ENEMY!!!
-                MainActivity.battleChapters.put(chapId, )
-            }
-
+            //int[] variants = GetVariants.getVariants(context.getString(chapId));
             int[] variants = GetVariants.getVariants(chapId, context);
+            /*int[] trueVariants = new int[variants.length];
+            for (int a = 0; a < variants.length; a++) {
+                trueVariants[a] = context.getResources().getIdentifier((chapter), "")
+            }
+            /*chapters.put(i, new Chapter(i, context.getResources().
+                    getIdentifier("chapter_" + i, "string", context.getPackageName()), variants));*/
             chapters.put(i, new Chapter(i, chapId, variants));
         }
         return chapters;
