@@ -3189,4 +3189,12 @@ cвернете к озеру - 12.
     <string name="inventory_flask_drink">Выпить</string>
     <string name="inventory_flask_fill">Пополнить</string>
 
+    <string name="spell_fire">Заклятия огня</string>
+    <string name="spell_illusion">Заклятия иллюзии</string>
+    <string name="spell_srenght">Заклятия силы</string>
+    <string name="spell_weaknes">Заклятия слабости</string>
+    <string name="spell_swiming">Заклятия плавания</string>
+    <string name="spell_hiling">Заклятия исцеления</string>
+    <string name="spell_levitation">Заклятия левитации</string>
+
 </resources>
