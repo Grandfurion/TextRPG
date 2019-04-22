@@ -1,23 +1,28 @@
 package yaros.com.textrpg.Battle;
+import android.content.Context;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import yaros.com.textrpg.Characters.Enemy;
 import yaros.com.textrpg.Characters.MainCharacter;
+import yaros.com.textrpg.R;
 import yaros.com.textrpg.Ui.MainActivity;
 
 public class Battle {
 
-    TextView battleLog;
+    public TextView battleLog;
     MainCharacter hero;
     ArrayList<Enemy> enemies;
     Enemy enemy;
+    //Context context;
 
-    public Battle(MainCharacter hero, Enemy enemy)
+    public Battle(MainCharacter hero, Enemy enemy,TextView battleLog/*,Context context */)
     {
+        this.battleLog = battleLog;
         this.hero = hero;
         this.enemy = enemy;
+
     }
 
     public Battle(MainCharacter hero, ArrayList<Enemy> enemies)
@@ -53,7 +58,7 @@ public class Battle {
         }else {
             str = enemy.name + " парирует Ваш удар, бой продолжается...";
         }
-        battleLog.append(str);
+        battleLog.setText(battleLog.getText() + str);
     }
 
     public void ThirdModAction(Enemy enemy){
@@ -67,14 +72,14 @@ public class Battle {
         }else {
             str = enemy.name + " парирует Ваш удар, бой продолжается...";
         }
-        battleLog.append(str);
+        battleLog.setText(battleLog.getText() + str);
     }
 
     public void FourthAction(int cur){
         for(int j = cur + 1; j < enemies.size(); j++){
             if(hero.impactPower < enemies.get(j).impactPower){
                 hero.TakeDamage(enemies.get(j).damage);
-                battleLog.append("Вы ранены, ваша выносливость: " + hero.stamina);
+                battleLog.setText(battleLog.getText() + "Вы ранены, ваша выносливость: " + hero.stamina);
             }
         }
     }
@@ -86,7 +91,9 @@ public class Battle {
             FirstAction();
             SecondAction();
 
-            battleLog.append("Сила удара " + "\"" + enemy.name + "\"" + "-- " + enemy.impactPower + " выносливость --- " + enemy.stamina);
+            str = "Сила удара " + "\"" + enemy.name + "\"" + "-- " + enemy.impactPower + " выносливость --- " + enemy.stamina;
+
+            battleLog.setText(battleLog.getText() + str);
 
             ThirdAction();
         }
@@ -95,7 +102,7 @@ public class Battle {
         }else {
             str = "ВЫ МЕРТВЫ!!!";
         }
-        battleLog.append(str);
+        battleLog.setText(battleLog.getText() + str);
     }
 
     public void MainModBattle(){
@@ -114,7 +121,7 @@ public class Battle {
         }else {
             str = "You Are Dead";
         }
-        battleLog.append(str);
+        battleLog.setText(battleLog.getText() + str);
     }
 
 }

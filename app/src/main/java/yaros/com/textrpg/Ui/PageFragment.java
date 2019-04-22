@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import yaros.com.textrpg.Battle.Battle;
 import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.R;
 
@@ -55,7 +57,23 @@ public class PageFragment extends Fragment {
             buttons.get(j).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //STARTUEM FRAGMENT BITVI!!!
+
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container , new BattleFragment(),BattleFragment.TAG).commit();
+                    if(MainActivity.battleChapters.get(id).size() == 1){
+                        Battle battle = new Battle
+                                (MainActivity.mainCharacter, MainActivity.battleChapters.get(id).get(0), getView().findViewById(R.id.battleLog));
+                        //battle.battleLog = getView().findViewById(R.id.battleLog);g
+                        battle.battleLog.setText("ads");// тут ошибка nullPointerEx
+                        battle.MainBattle();
+                        //battle.battleLog.clearComposingText();
+                    }else {
+                        Battle battle = new Battle
+                                (MainActivity.mainCharacter, MainActivity.battleChapters.get(id));
+                        //battle.battleLog = getView().findViewById(R.id.battleLog);
+                        battle.MainModBattle();
+                        //battle.battleLog.clearComposingText();
+                    }
+
                 }
             });
             j++;
