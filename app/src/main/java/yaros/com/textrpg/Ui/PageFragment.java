@@ -5,7 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import yaros.com.textrpg.Battle.Battle;
 import yaros.com.textrpg.Characters.MainCharacter;
@@ -24,6 +26,9 @@ import java.util.HashMap;
 public class PageFragment extends Fragment {
 
     public static final String TAG = "PageFragment";
+
+    public static BattleFragment currentBattleFragment;
+    public static ConstraintLayout layoutBattleFragment;
 
     public static int id = 0;
 
@@ -53,14 +58,15 @@ public class PageFragment extends Fragment {
         if (MainActivity.battleChapters.get(id) != null){
             buttons.get(j).setText("Начать Битву");
             buttons.get(j).setVisibility(View.VISIBLE);
-            buttons.get(j).setBackgroundColor(R.color.colorAccent);
             buttons.get(j).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container , new BattleFragment(),BattleFragment.TAG).addToBackStack(null).commit();
-                    MainActivity.bottomNavigationView.setVisibility(View.GONE);
-
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    BattleFragment battleFragment = BattleFragment.create();
+                    getView().findViewById(R.id.layoutBattleFragment).setVisibility(View.VISIBLE);
+                    currentBattleFragment = battleFragment;
+                    v.setVisibility(View.GONE);
+                    fm.beginTransaction().replace(R.id.layoutBattleFragment, battleFragment).commit();
                 }
             });
             j++;
@@ -89,6 +95,7 @@ public class PageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        layoutBattleFragment = getView().findViewById(R.id.layoutBattleFragment);
         final TextView pageText = getView().findViewById(R.id.pageText);
         final LinearLayout linearLayout = getView().findViewById(R.id.buttonsLayout);
 
@@ -104,4 +111,8 @@ public class PageFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
     }
+
+    /*public void hideLayoutBattleFragment(){
+
+    }*/
 }

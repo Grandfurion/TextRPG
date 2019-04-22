@@ -123,7 +123,7 @@ public class CharacterInfoFragment extends Fragment {
         AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
 
         items = new ArrayList<TextView>(9);
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
             items.add(getView().findViewById(this.getResources().getIdentifier(("informationText" + i),
                     "id", getContext().getPackageName())));
             items.get(i).setOnClickListener(new View.OnClickListener() {

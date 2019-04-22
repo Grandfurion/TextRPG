@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import yaros.com.textrpg.Battle.Battle;
 import yaros.com.textrpg.R;
 
@@ -19,7 +20,10 @@ public class BattleFragment extends Fragment {
 
     public static StringBuilder Log;
 
-    public BattleFragment create(){
+    //public PageFragment pageFragment;
+
+    public static BattleFragment create(/*PageFragment pageFragment*/){
+        //pageFragment = pageFragment;
         return new  BattleFragment();
     }
 
@@ -34,6 +38,7 @@ public class BattleFragment extends Fragment {
 
         TextView BattleLog = getView().findViewById(R.id.battleLog);
 
+        MainActivity.bottomNavigationView.setVisibility(View.GONE);
         BattleLog.setText(Log);
 
         if(MainActivity.battleChapters.get(PageFragment.id).size() == 1){
@@ -43,13 +48,24 @@ public class BattleFragment extends Fragment {
             battle.MainBattle();
         }else {
             Battle battle = new Battle
-                    (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id),  getView().findViewById(R.id.battleLog));
+                    (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id), getView().findViewById(R.id.battleLog));
             //battle.battleLog = getView().findViewById(R.id.battleLog);
             battle.MainModBattle();
             //battle.battleLog.clearComposingText();
         }
         Button battleEndBattle = getView().findViewById(R.id.buttonEndBattle);
         battleEndBattle.setVisibility(View.VISIBLE);
+        battleEndBattle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+            PageFragment.layoutBattleFragment.setVisibility(View.GONE);
+            fm.findFragmentByTag(PageFragment.TAG);
+            fm.beginTransaction().remove(PageFragment.currentBattleFragment).commit();
+
+            }
+        });
 
         super.onViewCreated(view, savedInstanceState);
     }
