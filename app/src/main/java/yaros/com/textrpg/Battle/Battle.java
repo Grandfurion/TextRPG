@@ -17,7 +17,7 @@ public class Battle {
     Enemy enemy;
     //Context context;
 
-    public Battle(MainCharacter hero, Enemy enemy,TextView battleLog/*,Context context */)
+    public Battle(MainCharacter hero, Enemy enemy, TextView battleLog/*,Context context */)
     {
         this.battleLog = battleLog;
         this.hero = hero;
@@ -58,7 +58,7 @@ public class Battle {
         }else {
             str = enemy.name + " парирует Ваш удар, бой продолжается...";
         }
-        battleLog.setText(battleLog.getText() + str);
+        battleLog.setText(battleLog.getText() + str + '\n');
     }
 
     public void ThirdModAction(Enemy enemy){
@@ -72,14 +72,14 @@ public class Battle {
         }else {
             str = enemy.name + " парирует Ваш удар, бой продолжается...";
         }
-        battleLog.setText(battleLog.getText() + str);
+        battleLog.setText(battleLog.getText() + str + '\n');
     }
 
     public void FourthAction(int cur){
         for(int j = cur + 1; j < enemies.size(); j++){
             if(hero.impactPower < enemies.get(j).impactPower){
                 hero.TakeDamage(enemies.get(j).damage);
-                battleLog.setText(battleLog.getText() + "Вы ранены, ваша выносливость: " + hero.stamina);
+                battleLog.setText(battleLog.getText() + "Вы ранены, ваша выносливость: " + hero.stamina  + '\n');
             }
         }
     }
@@ -91,9 +91,11 @@ public class Battle {
             FirstAction();
             SecondAction();
 
-            str = "Сила удара " + "\"" + enemy.name + "\"" + "-- " + enemy.impactPower + " выносливость --- " + enemy.stamina;
+            str = "Сила удара " + "\"" + enemy.name + "\"" + "-- " + enemy.impactPower + " выносливость -- " + enemy.stamina;
+            battleLog.setText(battleLog.getText() + str + '\n');
 
-            battleLog.setText(battleLog.getText() + str);
+            str = "Ваша сила удара " + "-- " + hero.impactPower + " выносливость -- " + hero.stamina;
+            battleLog.setText(battleLog.getText() + str + '\n');
 
             ThirdAction();
         }
@@ -102,7 +104,7 @@ public class Battle {
         }else {
             str = "ВЫ МЕРТВЫ!!!";
         }
-        battleLog.setText(battleLog.getText() + str);
+        battleLog.setText(battleLog.getText() + str + '\n');
     }
 
     public void MainModBattle(){
@@ -121,7 +123,7 @@ public class Battle {
         }else {
             str = "You Are Dead";
         }
-        battleLog.setText(battleLog.getText() + str);
+        battleLog.setText(battleLog.getText() + str + '\n');
     }
 
 }

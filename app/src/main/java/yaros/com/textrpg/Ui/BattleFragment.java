@@ -38,10 +38,8 @@ public class BattleFragment extends Fragment {
         if(MainActivity.battleChapters.get(PageFragment.id).size() == 1){
             Battle battle = new Battle
                     (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id).get(0), getView().findViewById(R.id.battleLog));
-            //battle.battleLog = getView().findViewById(R.id.battleLog);g
-            battle.battleLog.setText("ads");// тут ошибка nullPointerEx
+
             battle.MainBattle();
-            //battle.battleLog.clearComposingText();
         }else {
             Battle battle = new Battle
                     (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id));
