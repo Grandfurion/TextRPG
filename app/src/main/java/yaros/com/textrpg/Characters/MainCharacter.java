@@ -86,6 +86,7 @@ public class MainCharacter {
     public void Fill(Context context){
         if (flask <2 ){
             //SOZDANIE DIALOGA
+
         }
         CharacterInfoFragment.updateCharacterInfo();
     }

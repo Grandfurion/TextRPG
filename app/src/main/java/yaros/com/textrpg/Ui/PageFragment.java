@@ -58,22 +58,8 @@ public class PageFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container , new BattleFragment(),BattleFragment.TAG).commit();
-                    if(MainActivity.battleChapters.get(id).size() == 1){
-                        Battle battle = new Battle
-                                (MainActivity.mainCharacter, MainActivity.battleChapters.get(id).get(0), getView().findViewById(R.id.battleLog));
-                        //battle.battleLog = getView().findViewById(R.id.battleLog);g
-                        battle.battleLog.setText("ads");// тут ошибка nullPointerEx
-                        battle.MainBattle();
-                        //battle.battleLog.clearComposingText();
-                    }else {
-                        Battle battle = new Battle
-                                (MainActivity.mainCharacter, MainActivity.battleChapters.get(id));
-                        //battle.battleLog = getView().findViewById(R.id.battleLog);
-                        battle.MainModBattle();
-                        //battle.battleLog.clearComposingText();
-                    }
-
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container , new BattleFragment(),BattleFragment.TAG).commit();
                 }
             });
             j++;

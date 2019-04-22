@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import yaros.com.textrpg.Battle.Battle;
 import yaros.com.textrpg.R;
 
 public class BattleFragment extends Fragment {
@@ -33,6 +34,22 @@ public class BattleFragment extends Fragment {
         TextView BattleLog = getView().findViewById(R.id.battleLog);
 
         BattleLog.setText(Log);
+
+        if(MainActivity.battleChapters.get(PageFragment.id).size() == 1){
+            Battle battle = new Battle
+                    (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id).get(0), getView().findViewById(R.id.battleLog));
+            //battle.battleLog = getView().findViewById(R.id.battleLog);g
+            battle.battleLog.setText("ads");// тут ошибка nullPointerEx
+            battle.MainBattle();
+            //battle.battleLog.clearComposingText();
+        }else {
+            Battle battle = new Battle
+                    (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id));
+            //battle.battleLog = getView().findViewById(R.id.battleLog);
+            battle.MainModBattle();
+            //battle.battleLog.clearComposingText();
+        }
+
 
         super.onViewCreated(view, savedInstanceState);
     }

@@ -11,7 +11,7 @@ import yaros.com.textrpg.Ui.MainActivity;
 
 public class Battle {
 
-    public TextView battleLog;
+    public static TextView battleLog;
     MainCharacter hero;
     ArrayList<Enemy> enemies;
     Enemy enemy;
