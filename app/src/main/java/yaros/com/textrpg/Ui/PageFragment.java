@@ -58,7 +58,8 @@ public class PageFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container , new BattleFragment(),BattleFragment.TAG).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container , new BattleFragment(),BattleFragment.TAG).addToBackStack(null).commit();
+                    MainActivity.bottomNavigationView.setVisibility(View.GONE);
 
                 }
             });
