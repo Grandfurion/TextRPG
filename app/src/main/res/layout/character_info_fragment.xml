@@ -331,7 +331,7 @@
                     android:id="@+id/buttonAddSpell"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Записать заклинание" />
 
                 <TextView
                     android:id="@+id/textViewSpell0"
