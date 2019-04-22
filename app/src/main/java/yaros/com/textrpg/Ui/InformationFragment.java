@@ -169,6 +169,9 @@ public class InformationFragment extends Fragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
+                    if (Integer.parseInt(moveToEditText.getText().toString()) > 617 || Integer.parseInt(moveToEditText.getText().toString()) < 0){
+                        Toast.makeText(getContext(), "Такой главы нет", Toast.LENGTH_SHORT).show();
+                    }
                     PageFragment pageFragment = (PageFragment) getActivity().getSupportFragmentManager().findFragmentByTag(PageFragment.TAG);
                     pageFragment.Update(Integer.parseInt(moveToEditText.getText().toString()));
                     break;
