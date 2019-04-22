@@ -52,12 +52,28 @@ public class CharacterInfoFragment extends Fragment {
         tvFortune = getView().findViewById(R.id.textViewFortune1);
         tvMoney = getView().findViewById(R.id.textViewGold1);
         tvFlask = getView().findViewById(R.id.textViewFlask);
+        buttonDrink = getView().findViewById(R.id.flaskDrink);
+        buttonFill = getView().findViewById(R.id.flaskFill);
+
+        buttonDrink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.mainCharacter.Drink(getContext());
+            }
+        });
+        buttonFill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.mainCharacter.Fill(getContext());
+            }
+        });
 
 
         Button buttonCheckFortune = getView().findViewById(R.id.buttonCheckFortune);
         buttonCheckFortune.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.mainCharacter.stamina--;
                 Toast ifLuck = new Toast(getContext());
                 if (MainActivity.mainCharacter.fortune <= 0){
                     ifLuck.makeText(getContext(), R.string.luck_check_no_fortune, Toast.LENGTH_SHORT).show();
@@ -95,7 +111,7 @@ public class CharacterInfoFragment extends Fragment {
             tvMastery.setText("" + MainActivity.mainCharacter.mastery);
             tvFortune.setText("" + MainActivity.mainCharacter.fortune);
             tvMoney.setText("" + MainActivity.mainCharacter.money);
-            tvFlask.setText(R.string.inventory_flask + MainActivity.mainCharacter.flask);
+            tvFlask.setText("Фляга " + MainActivity.mainCharacter.flask + "/ 2");
         }catch(Exception e){
             Log.e("Warn", "Item did'nt generated yet");
         }

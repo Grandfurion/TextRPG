@@ -69,10 +69,11 @@ public class MainCharacter {
 
     public void Drink(Context context){
         if (flask <= 0 ){
-            Toast.makeText(context, "Фляга пуста", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Фляга пуста", Toast.LENGTH_SHORT).show();
+            return;
         }
         if (stamina >= maxStamina){
-            Toast.makeText(context, "Здоровье полное", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Здоровье полное", Toast.LENGTH_SHORT).show();
             return;
         }
         flask --;
@@ -86,7 +87,11 @@ public class MainCharacter {
     public void Fill(Context context){
         if (flask <2 ){
             //SOZDANIE DIALOGA
-
+            AlertDialog fillDialog = onCreateDialog(DIALOG_FILL, context);
+            fillDialog.show();
+        }else {
+            Toast.makeText(context, "Фляга полная", Toast.LENGTH_SHORT).show();
+            return;
         }
         CharacterInfoFragment.updateCharacterInfo();
     }
@@ -109,6 +114,7 @@ public class MainCharacter {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
                     flask++;
+                    CharacterInfoFragment.updateCharacterInfo();
                     break;
                 case Dialog.BUTTON_NEGATIVE:
                     break;

@@ -9,7 +9,7 @@
         android:id="@+id/linearLayoutFlask"
         android:layout_width="180dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/inventory_flask"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:id="@+id/linearLayoutDrinkFill"
@@ -32,16 +32,18 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/flas"
+                android:id="@+id/flaskDrink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/inventory_flask_drink" />
+                android:text="@string/inventory_flask_drink"
+                android:textSize="12sp" />
 
             <Button
-                android:id="@+id/buttonFill"
+                android:id="@+id/flaskFill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/inventory_flask_fill" />
+                android:text="@string/inventory_flask_fill"
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -50,9 +52,9 @@
         android:id="@+id/linearLayoutGold"
         android:layout_width="80dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="4dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/buttonCheckFortune"
         app:layout_constraintStart_toEndOf="@+id/linearLayoutFlask"
@@ -62,14 +64,16 @@
             android:id="@+id/textViewGold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inventory_gold" />
+            android:text="@string/inventory_gold"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textViewGold1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textAlignment="center"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <TextView
@@ -361,8 +365,9 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/button_check_fortune"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutStats" />
 
