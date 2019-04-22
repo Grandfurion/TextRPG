@@ -29,6 +29,9 @@ public class CharacterInfoFragment extends Fragment {
     static TextView tvMastery;
     static TextView tvFortune;
     static TextView tvMoney;
+    static Button buttonDrink;
+    static Button buttonFill;
+    static TextView tvFlask;
 
     public static CharacterInfoFragment create(){
         return new CharacterInfoFragment();
@@ -48,6 +51,7 @@ public class CharacterInfoFragment extends Fragment {
         tvMastery = getView().findViewById(R.id.textViewMastery1);
         tvFortune = getView().findViewById(R.id.textViewFortune1);
         tvMoney = getView().findViewById(R.id.textViewGold1);
+        tvFlask = getView().findViewById(R.id.textViewFlask);
 
 
         Button buttonCheckFortune = getView().findViewById(R.id.buttonCheckFortune);
@@ -87,11 +91,11 @@ public class CharacterInfoFragment extends Fragment {
     public static void updateCharacterInfo(){
         try {
             textViewSword.setText("Меч: " + MainActivity.mainCharacter.sword);
-            tvStamina.setText("" + MainActivity.mainCharacter.stamina);
+            tvStamina.setText("" + MainActivity.mainCharacter.stamina + "/" + MainActivity.mainCharacter.maxStamina);
             tvMastery.setText("" + MainActivity.mainCharacter.mastery);
             tvFortune.setText("" + MainActivity.mainCharacter.fortune);
             tvMoney.setText("" + MainActivity.mainCharacter.money);
-
+            tvFlask.setText(R.string.inventory_flask + MainActivity.mainCharacter.flask);
         }catch(Exception e){
             Log.e("Warn", "Item did'nt generated yet");
         }

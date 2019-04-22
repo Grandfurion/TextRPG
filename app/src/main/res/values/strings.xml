@@ -3161,6 +3161,8 @@ cвернете к озеру - 12.
     <string name="dialog_positive_button">Создать</string>
     <string name="dialog_negative_button">Отмена</string>
 
+    <string name="dialog_fill_message">Наполнить флягу?</string>
+
     <string name="inventory_gold">Деньги</string>
     <string name="inventory_stamina">Выносливость</string>
     <string name="inventory_mastery">Мастерство</string>
@@ -3170,5 +3172,9 @@ cвернете к озеру - 12.
     <string name="luck_check_false">Вы неудачливы</string>
     <string name="luck_check_no_fortune">Фортуна вам не улыбается</string>
     <string name="button_check_fortune">Проверить \n Удачу</string>
+
+    <string name="inventory_flask">Фляга</string>
+    <string name="inventory_flask_drink">Выпить</string>
+    <string name="inventory_flask_fill">Пополнить</string>
 
 </resources>

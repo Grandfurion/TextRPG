@@ -18,10 +18,32 @@
         <TextView
             android:id="@+id/textViewFlask"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="TextView"
+            android:gravity="center"
+            android:text="@string/inventory_flask"
             android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDrinkFill"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/flas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inventory_flask_drink" />
+
+            <Button
+                android:id="@+id/buttonFill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inventory_flask_fill" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
