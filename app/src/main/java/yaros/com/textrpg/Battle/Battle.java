@@ -93,6 +93,14 @@ public class Battle {
     public void MainBattle(){
         String str;
 
+        if(hero.sword.equals("Смерть Орков")){
+            if (enemy.name.contains("ОРК")){
+                enemy.stamina = 0;
+                battleLog.setText(battleLog.getText() + "Вы убили орка с помощью меча \"Убийца Орков\"" + '\n');
+
+            }
+        }
+
         while ((hero.stamina > 0 ) && (enemy.stamina > 0)){
             FirstAction();
             SecondAction();
@@ -119,6 +127,7 @@ public class Battle {
         for (Enemy en: enemies) {
             if (en.name.contains("ОРК")){
                 en.stamina = 0;
+                battleLog.setText(battleLog.getText() + "Вы убили орка с помощью меча \"Убийца Орков\"" + '\n');
                 break;
             }
 
