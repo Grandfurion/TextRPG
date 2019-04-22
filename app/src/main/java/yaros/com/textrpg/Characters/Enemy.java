@@ -20,7 +20,7 @@ public class Enemy {
 
     public void SetImpactPower()
     {
-        impactPower = mastery + Cube.ThrowOneCube();
+        impactPower = mastery + Cube.ThrowTwoCube();
     }
 
     public void GetDamage(int damage)
