@@ -25,8 +25,9 @@ public class Battle {
 
     }
 
-    public Battle(MainCharacter hero, ArrayList<Enemy> enemies)
+    public Battle(MainCharacter hero, ArrayList<Enemy> enemies, TextView battleLog)
     {
+        this.battleLog = battleLog;
         this.hero = hero;
         this.enemies = enemies;
     }
@@ -128,11 +129,21 @@ public class Battle {
                 FirstModAction();
                 SecondAction();
 
+                for (Enemy en: enemies) {
+                    if(en.stamina > 0) {
+                        str = "Сила удара " + "\"" + en.name + "\"" + "-- " + en.impactPower + " выносливость -- " + en.stamina;
+                        battleLog.setText(battleLog.getText() + str + '\n');
+                    }
+                }
 
+                str = "Ваша сила удара " + "-- " + hero.impactPower + " выносливость -- " + hero.stamina;
+                battleLog.setText(battleLog.getText() + str + '\n');
 
                 ThirdModAction(enemies.get(i));
                 FourthAction(i);
             }
+            str = "ВЫ УБИЛИ " + enemies.get(i).name;
+            battleLog.setText(battleLog.getText() + str + '\n');
         }
         if(hero.stamina > 0){
             str = "Вы Победили!!!";

@@ -43,7 +43,7 @@ public class BattleFragment extends Fragment {
             battle.MainBattle();
         }else {
             Battle battle = new Battle
-                    (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id));
+                    (MainActivity.mainCharacter, MainActivity.battleChapters.get(PageFragment.id),  getView().findViewById(R.id.battleLog));
             //battle.battleLog = getView().findViewById(R.id.battleLog);
             battle.MainModBattle();
             //battle.battleLog.clearComposingText();
