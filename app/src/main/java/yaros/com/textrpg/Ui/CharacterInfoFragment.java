@@ -1,13 +1,19 @@
 package yaros.com.textrpg.Ui;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -32,6 +38,14 @@ public class CharacterInfoFragment extends Fragment {
     static Button buttonDrink;
     static Button buttonFill;
     static TextView tvFlask;
+
+    static int itemNum;
+
+    static EditText editText;
+
+    static int selectToDeleteTvNum;
+    public final int DIALOG_ADD = 1;
+    public final int DIALOG_DELETE = 2;
 
     public static CharacterInfoFragment create(){
         return new CharacterInfoFragment();
@@ -101,6 +115,38 @@ public class CharacterInfoFragment extends Fragment {
             items.add(getView().findViewById((getResources().getIdentifier(("textViewInventory" + i), "id", getContext().getPackageName()))));
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+
+        itemNum = 0;
+
+        AlertDialog alertDialog = onCreateDialog(DIALOG_ADD);
+        AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
+
+        items = new ArrayList<TextView>(9);
+        for (int i = 0; i < 9; i++) {
+            items.add(getView().findViewById(this.getResources().getIdentifier(("informationText" + i),
+                    "id", getContext().getPackageName())));
+            items.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectToDeleteTvNum = items.indexOf(v);
+                    alertDialogDelete.show();
+                }
+            });
+        }
+
+        FloatingActionButton fab = getView().findViewById(R.id.informationFloatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemNum < 9) {
+                    alertDialog.show();
+                } else {
+                    Toast.makeText(getContext(), "максимум заметок", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //CODE
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -116,4 +162,66 @@ public class CharacterInfoFragment extends Fragment {
             Log.e("Warn", "Item did'nt generated yet");
         }
     }
+
+
+
+
+    protected AlertDialog onCreateDialog(int id) {
+        if (id == DIALOG_ADD) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+            adb.setTitle(R.string.information_dialog_title);
+            adb.setMessage(R.string.information_dialog_message);
+            EditText dialogEditText = new EditText(getContext());
+            adb.setView(dialogEditText);
+            editText = dialogEditText;
+            adb.setIcon(R.drawable.ic_information_24dp);
+            adb.setPositiveButton(R.string.dialog_positive_button, myClickListener);
+            adb.setNegativeButton(R.string.dialog_negative_button, myClickListener);
+            return adb.create();
+        }else if (id == DIALOG_DELETE) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+            adb.setMessage(R.string.information_delete_dialog_title);
+            adb.setIcon(R.drawable.ic_information_24dp);
+            adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerDeleteDialog);
+            adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerDeleteDialog);
+            return adb.create();
+        }
+        return onCreateDialog(id);
+    }
+
+    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case Dialog.BUTTON_POSITIVE:
+                    if (!editText.getText().toString().equals("")) {
+                        items.get(itemNum).setVisibility(View.VISIBLE);
+                        items.get(itemNum).setText(editText.getText());
+                        itemNum++;
+                    }
+                    break;
+                case Dialog.BUTTON_NEGATIVE:
+                    break;
+            }
+        }
+    };
+
+    DialogInterface.OnClickListener myClickListenerDeleteDialog = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case Dialog.BUTTON_POSITIVE:
+                    for (int i = selectToDeleteTvNum; i < 9; i++){
+                        items.get(i).setText(items.get(i + 1).getText());
+                    }
+                    itemNum--;
+                    items.get(itemNum).setText("");
+                    items.get(itemNum).setVisibility(View.GONE);
+                    break;
+                case Dialog.BUTTON_NEGATIVE:
+                    break;
+            }
+        }
+    };
+
+
+
 }
