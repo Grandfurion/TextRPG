@@ -33,7 +33,9 @@ public class InformationFragment extends Fragment {
     public final int DIALOG_DELETE = 2;
     public final int DIALOG_MOVETO = 3;
 
-    public static Button moveToButton;
+    public static FloatingActionButton moveToButton;
+
+    public static EditText moveToEditText;
 
     static EditText editText;
 
@@ -58,12 +60,13 @@ public class InformationFragment extends Fragment {
 
         AlertDialog alertDialog = onCreateDialog(DIALOG_ADD);
         AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
+        AlertDialog alertDialogMoveTo = onCreateDialog(DIALOG_MOVETO);
 
         moveToButton = getView().findViewById(R.id.moveToFloatingActionButton);
         moveToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                alertDialogMoveTo.show();
             }
         });
 
@@ -116,14 +119,14 @@ public class InformationFragment extends Fragment {
             return adb.create();
         }else if (id == DIALOG_MOVETO){
             AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
-            adb.setMessage(R.string.information_delete_dialog_title);
+            adb.setMessage(R.string.dialog_move_to_message);
             adb.setIcon(R.drawable.ic_arrow_24dp);
-            adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerMoveToDialog);
+            adb.setPositiveButton(R.string.dialog_move_to_positive_button, myClickListenerMoveToDialog);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerMoveToDialog);
             EditText dialogEditText = new EditText(getContext());
             dialogEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
             adb.setView(dialogEditText);
-            editText = dialogEditText;
+            moveToEditText = dialogEditText;
             return adb.create();
         }
         return onCreateDialog(id);
@@ -166,12 +169,8 @@ public class InformationFragment extends Fragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
-                    for (int i = selectToDeleteTvNum; i < 14; i++){
-                        informations.get(i).setText(informations.get(i + 1).getText());
-                    }
-                    informNum--;
-                    informations.get(informNum).setText("");
-                    informations.get(informNum).setVisibility(View.GONE);
+                    PageFragment pageFragment = (PageFragment) getActivity().getSupportFragmentManager().findFragmentByTag(PageFragment.TAG);
+                    pageFragment.Update(Integer.parseInt(moveToEditText.getText().toString()));
                     break;
                 case Dialog.BUTTON_NEGATIVE:
                     break;

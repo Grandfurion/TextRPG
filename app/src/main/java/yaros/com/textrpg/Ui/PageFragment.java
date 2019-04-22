@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,6 +35,8 @@ public class PageFragment extends Fragment {
     public static boolean strenghtSpell;
     public static boolean weaknessSpell;
 
+    public static TextView pageText;
+
     public static int id = 0;
 
     public static PageFragment сreateFragment() {
@@ -42,7 +46,7 @@ public class PageFragment extends Fragment {
     public static ArrayList<Button> buttons = new ArrayList<>();
 
     @SuppressLint("ResourceAsColor")
-    public void Update(int new_id, TextView pageText) {
+    public void Update(int new_id) {
         id = new_id;
         if (id == 568){
             MainActivity.mainCharacter.sword = "Смерть Орков";
@@ -52,7 +56,7 @@ public class PageFragment extends Fragment {
         //if (id = )//VPISAT` GLAVI AKTIVACII SPELOV!!
 
 
-        pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);
+        pageText.setText("Глава: " + id + "\n" + getString(MainActivity.chapters.get(id).CHAPTER_TEXT));
         for (Button b : buttons) {
             b.setVisibility(View.GONE);
         }
@@ -83,7 +87,7 @@ public class PageFragment extends Fragment {
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Update(i, pageText);
+                    Update(i);
                 }
             });
             j++;
@@ -100,7 +104,7 @@ public class PageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         layoutBattleFragment = getView().findViewById(R.id.layoutBattleFragment);
-        final TextView pageText = getView().findViewById(R.id.pageText);
+        pageText = getView().findViewById(R.id.pageText);
         final LinearLayout linearLayout = getView().findViewById(R.id.buttonsLayout);
 
         buttons.add(getView().findViewById(R.id.button1));
@@ -110,7 +114,7 @@ public class PageFragment extends Fragment {
         buttons.add(getView().findViewById(R.id.button5));
         buttons.add(getView().findViewById(R.id.button6));
 
-        Update(id, pageText);
+        Update(id);
         //MainActivity.chapters.get(id);
 
         super.onViewCreated(view, savedInstanceState);

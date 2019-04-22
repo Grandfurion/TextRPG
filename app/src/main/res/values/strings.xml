@@ -3167,6 +3167,9 @@ cвернете к озеру - 12.
 
     <string name="dialog_positive_button">Создать</string>
     <string name="dialog_negative_button">Отмена</string>
+    <string name="dialog_move_to_message">На какую главу перейти?</string>
+    <string name="dialog_move_to_positive_button">Перейти</string>
+
 
     <string name="dialog_fill_message">Наполнить флягу?</string>
 
