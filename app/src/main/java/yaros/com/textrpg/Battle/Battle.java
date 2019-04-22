@@ -43,7 +43,12 @@ public class Battle {
     }
 
     public void SecondAction(){
-        hero.SetImpactPower();
+
+        if(hero.sword.equals("Меч Зеленого Рыцаря")){
+            hero.SetImpactPower(1);
+        }else {
+            hero.SetImpactPower();
+        }
     }
 
     public void ThirdAction(){
@@ -109,11 +114,22 @@ public class Battle {
 
     public void MainModBattle(){
         String str;
+        if(hero.sword.equals("Смерть Орков"))
+        for (Enemy en: enemies) {
+            if (en.name.contains("ОРК")){
+                en.stamina = 0;
+                break;
+            }
 
-        for (int i = 0; i < enemies.size();i++){
+        }
+
+        for (int i = 0; i < enemies.size(); i++){
             while ((hero.stamina > 0)&&(enemies.get(i).stamina > 0)){
                 FirstModAction();
                 SecondAction();
+
+
+
                 ThirdModAction(enemies.get(i));
                 FourthAction(i);
             }

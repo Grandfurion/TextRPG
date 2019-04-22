@@ -62,6 +62,9 @@ public class MainCharacter {
     public void SetImpactPower(){
         impactPower = Cube.ThrowTwoCube() + mastery;
     }
+    public void SetImpactPower(int s){
+        impactPower = Cube.ThrowTwoCube() + mastery + s;
+    }
 
     public void  TakeDamage(int damage){
         stamina -= damage;
