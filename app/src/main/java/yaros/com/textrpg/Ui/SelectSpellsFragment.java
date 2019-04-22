@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import yaros.com.textrpg.R;
 
 public class SelectSpellsFragment extends Fragment {
@@ -29,7 +30,7 @@ public class SelectSpellsFragment extends Fragment {
     Button sweem;
 
 
-    public SelectSpellsFragment create(){
+    public static SelectSpellsFragment create(){
         return new SelectSpellsFragment();
     }
 
@@ -49,13 +50,13 @@ public class SelectSpellsFragment extends Fragment {
         healing = getView().findViewById(R.id.healingSpell);
         sweem = getView().findViewById(R.id.sweemSpell);
 
-        levitation.setOnClickListener(OCL);
-        fire.setOnClickListener(OCL);
-        illusion.setOnClickListener(OCL);
-        strenght.setOnClickListener(OCL);
-        weakness.setOnClickListener(OCL);
-        healing.setOnClickListener(OCL);
-        sweem.setOnClickListener(OCL);
+        levitation.setOnClickListener(levitationOCL);
+        fire.setOnClickListener(fireOCL);
+        illusion.setOnClickListener(illusionOCL);
+        strenght.setOnClickListener(strenghtOCL);
+        weakness.setOnClickListener(weaknessOCL);
+        healing.setOnClickListener(healingOCL);
+        sweem.setOnClickListener(sweemOCL);
 
         LogTv = getView().findViewById(R.id.SpellsLog);
         i = 0;
@@ -66,49 +67,87 @@ public class SelectSpellsFragment extends Fragment {
     View.OnClickListener levitationOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие левитации");
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_levitation));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_levitation));
+            i++;
+            if (i >= 10){
+                Complete();
+            }
         }
     };
 
     View.OnClickListener fireOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие огня");
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_fire));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_fire));
+            i++;
+            if (i >= 10){
+                Complete();
+            }
         }
     };
 
     View.OnClickListener illusionOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие иллюзии");
-        }
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_illusion));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_illusion));
+            i++;
+            if (i >= 10){
+                Complete();
+            }        }
     };
 
     View.OnClickListener strenghtOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие силы");
-        }
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_strenght));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_strenght));
+            i++;
+            if (i >= 10){
+                Complete();
+            }        }
     };
 
     View.OnClickListener weaknessOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие левитации");
-        }
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_weakness));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_weakness));
+            i++;
+            if (i >= 10){
+                Complete();
+            }        }
     };
 
     View.OnClickListener healingOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие левитации");
-        }
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_healing));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_healing));
+            i++;
+            if (i >= 10){
+                Complete();
+            }        }
     };
 
     View.OnClickListener sweemOCL = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LogTv.setText(LogTv.getText().toString() + "\n" + "Заклятие левитации");
-        }
+            LogTv.setText(LogTv.getText().toString() + "\n" + getString(R.string.spell_sweem));
+            CharacterInfoFragment.spells.get(i).setText(getString(R.string.spell_sweem));
+            i++;
+            if (i >= 10){
+                Complete();
+            }        }
     };
+
+    public void Complete(){
+        MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        PageFragment.layoutBattleFragment.setVisibility(View.GONE);
+        fm.beginTransaction().remove(PageFragment.currentBattleFragment).commit();
+
+    }
 }

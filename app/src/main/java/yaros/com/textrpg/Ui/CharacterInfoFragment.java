@@ -27,8 +27,10 @@ public class CharacterInfoFragment extends Fragment {
 
     public static final String TAG = "CharacterInfoFragment";
 
-    static ArrayList<TextView> spells;
     static ArrayList<TextView> items;
+    static ArrayList<TextView> spells;
+
+    Button addSpells;
 
     static TextView textViewSword;
     static TextView tvStamina;
@@ -40,12 +42,17 @@ public class CharacterInfoFragment extends Fragment {
     static TextView tvFlask;
 
     static int itemNum;
+    static int spellNum;
 
     static EditText editText;
 
     static int selectToDeleteTvNum;
+    static int selectToDeleteTvNumSpell;
+    static AlertDialog alertDialogDelete;
     public final int DIALOG_ADD = 1;
     public final int DIALOG_DELETE = 2;
+    public final int DIALOG_ADD_SPELL = 3;
+    public final int DIALOG_DELETE_SPELL = 4;
 
     public static CharacterInfoFragment create(){
         return new CharacterInfoFragment();
@@ -68,6 +75,7 @@ public class CharacterInfoFragment extends Fragment {
         tvFlask = getView().findViewById(R.id.textViewFlask);
         buttonDrink = getView().findViewById(R.id.flaskDrink);
         buttonFill = getView().findViewById(R.id.flaskFill);
+
 
         buttonDrink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,14 +130,12 @@ public class CharacterInfoFragment extends Fragment {
             }
         });
 
-        spells = new ArrayList<>(10);
         items = new ArrayList<>(9);
+        spells = new ArrayList<>(10);
 
         updateCharacterInfo();
 
-        for (int i = 0; i < 10; i++){
-            spells.add(getView().findViewById((getResources().getIdentifier(("textViewSpell" + i), "id", getContext().getPackageName()))));
-        }/*
+        /*
         for (int i = 0; i < 9; i++){
             items.add(getView().findViewById((getResources().getIdentifier(("textViewInventory" + i), "id", getContext().getPackageName()))));
         }*/
@@ -137,9 +143,12 @@ public class CharacterInfoFragment extends Fragment {
         //////////////////////////////////////////////////////////////////////////////////////////////////
 
         itemNum = 0;
+        spellNum = 0;
 
         AlertDialog alertDialog = onCreateDialog(DIALOG_ADD);
-        AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
+        alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
+        AlertDialog alertDialogAddSpell = onCreateDialog(DIALOG_ADD_SPELL);
+        AlertDialog alertDialogDeleteSpell = onCreateDialog(DIALOG_DELETE_SPELL);
 
         for (int i = 0; i < 9; i++) {
             items.add(getView().findViewById(this.getResources().getIdentifier(("textViewInventory" + i),
@@ -152,6 +161,31 @@ public class CharacterInfoFragment extends Fragment {
                 }
             });
         }
+
+        for (int i = 0; i < 10; i++) {
+            spells.add(getView().findViewById(this.getResources().getIdentifier(("textViewSpell" + i),
+                    "id", getContext().getPackageName())));
+            spells.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectToDeleteTvNumSpell = spells.indexOf(v);
+                    alertDialogDeleteSpell.show();
+                }
+            });
+        }
+
+
+        addSpells = getView().findViewById(R.id.buttonAddSpell);
+        addSpells.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (spellNum < 10) {
+                    alertDialogAddSpell.show();
+                } else {
+                    Toast.makeText(getContext(), "Максимум заклинаний", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         FloatingActionButton fab = getView().findViewById(R.id.inventoryFloatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +210,7 @@ public class CharacterInfoFragment extends Fragment {
             tvFortune.setText("" + MainActivity.mainCharacter.fortune);
             tvMoney.setText("" + MainActivity.mainCharacter.money);
             tvFlask.setText("Фляга " + MainActivity.mainCharacter.flask + "/ 2");
+
         }catch(Exception e){
             Log.e("Warn", "Item did'nt generated yet");
         }
@@ -187,7 +222,7 @@ public class CharacterInfoFragment extends Fragment {
     protected AlertDialog onCreateDialog(int id) {
         if (id == DIALOG_ADD) {
             AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
-            adb.setTitle(R.string.information_dialog_title);
+            adb.setTitle(R.string.inventory_add_item);
             adb.setMessage(R.string.information_dialog_message);
             EditText dialogEditText = new EditText(getContext());
             adb.setView(dialogEditText);
@@ -202,6 +237,24 @@ public class CharacterInfoFragment extends Fragment {
             adb.setIcon(R.drawable.ic_information_24dp);
             adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerDeleteDialog);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerDeleteDialog);
+            return adb.create();
+        }else if(id == DIALOG_ADD_SPELL){
+            AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+            adb.setTitle(R.string.inventory_add_spell);
+            adb.setMessage(R.string.information_dialog_message);
+            EditText dialogEditText = new EditText(getContext());
+            adb.setView(dialogEditText);
+            editText = dialogEditText;
+            adb.setIcon(R.drawable.ic_information_24dp);
+            adb.setPositiveButton(R.string.dialog_positive_button, myClickListenerAddSpell);
+            adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerAddSpell);
+            return adb.create();
+        }else if (id == DIALOG_DELETE_SPELL) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+            adb.setMessage(R.string.inventory_use_spell);
+            adb.setIcon(R.drawable.ic_information_24dp);
+            adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerDeleteSpellDialog);
+            adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerDeleteSpellDialog);
             return adb.create();
         }
         return onCreateDialog(id);
@@ -223,6 +276,23 @@ public class CharacterInfoFragment extends Fragment {
         }
     };
 
+
+        DialogInterface.OnClickListener myClickListenerAddSpell = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case Dialog.BUTTON_POSITIVE:
+                        if (!editText.getText().toString().equals("")) {
+                            spells.get(spellNum).setVisibility(View.VISIBLE);
+                            spells.get(spellNum).setText(editText.getText());
+                            spellNum++;
+                        }
+                        break;
+                    case Dialog.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
     DialogInterface.OnClickListener myClickListenerDeleteDialog = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
@@ -240,6 +310,22 @@ public class CharacterInfoFragment extends Fragment {
         }
     };
 
+        DialogInterface.OnClickListener myClickListenerDeleteSpellDialog = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case Dialog.BUTTON_POSITIVE:
+                        for (int i = selectToDeleteTvNumSpell; i < 9; i++){
+                            spells.get(i).setText(spells.get(i + 1).getText());
+                        }
+                        spellNum--;
+                        spells.get(spellNum).setText("");
+                        spells.get(spellNum).setVisibility(View.GONE);
+                        break;
+                    case Dialog.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
 
 
 }

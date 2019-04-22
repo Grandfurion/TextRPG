@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,26 +27,33 @@ public class MainActivity extends AppCompatActivity {
 
     public static MainCharacter mainCharacter;
 
+    CharacterInfoFragment characterInfoFragment;
+
     public static BottomNavigationView bottomNavigationView;
 
     private static final String KEY_SELECTED_TAG = "KEY_SELECTED_TAG";
 
     public static String displayedTag;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mainCharacter = new MainCharacter();
+
 
         chapters = ChaptersCreator.Generate(this);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
+        showFragment(CharacterInfoFragment.TAG, CharacterInfoFragment::create, fragmentManager);
         fragmentManager.beginTransaction().replace(R.id.container, MainMenuFragment.create(), "MainMenuFragment").commit();
         displayedTag = "MainMenuFragment";
+
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             if (menuItem.getItemId() == bottomNavigationView.getSelectedItemId()) return true;
             FragmentManager fm = getSupportFragmentManager();

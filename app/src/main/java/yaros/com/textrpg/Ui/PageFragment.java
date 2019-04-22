@@ -41,6 +41,8 @@ public class PageFragment extends Fragment {
     public static boolean weaknessSpell;
     public static int DIALOG_CHOOSE_SPELLS = 1;
 
+    public static boolean isSpellsSelected;
+
     public static TextView pageText;
 
     public static int id = 0;
@@ -69,10 +71,23 @@ public class PageFragment extends Fragment {
 
         int j = 0;
 
-        if (id == 0){ //VPISAT` GLAVI AKTIVACII SPELOV!!
+        /*if (id == 0){ //VPISAT` GLAVI AKTIVACII SPELOV!!
+            if (isSpellsSelected == false){
+                buttons.get(j).setText("ВЫБРАТЬ ЗАКЛИНАНИЯ");
+                buttons.get(j).setVisibility(View.VISIBLE);
+                buttons.get(j).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                SelectSpellsFragment selectSpellsFragment = SelectSpellsFragment.create();
+                getView().findViewById(R.id.layoutSelectSpellsFragment).setVisibility(View.VISIBLE);
+                fm.beginTransaction().replace(R.id.layoutSelectSpellsFragment, selectSpellsFragment).commit();
+                    }
+                });
+            }
             j++;
-        }
+        }*/
 
         if (MainActivity.battleChapters.get(id) != null){
             buttons.get(j).setText("Начать Битву");

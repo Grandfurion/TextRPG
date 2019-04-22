@@ -228,6 +228,12 @@
                 tools:layout_editor_absoluteY="322dp">
 
                 <TextView
+                    android:id="@+id/textViewInventories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Инвентарь:" />
+
+                <TextView
                     android:id="@+id/textViewInventory0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -314,6 +320,18 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:layout_editor_absoluteY="322dp">
+
+                <TextView
+                    android:id="@+id/textViewSells"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ваши заклинания:" />
+
+                <Button
+                    android:id="@+id/buttonAddSpell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
 
                 <TextView
                     android:id="@+id/textViewSpell0"

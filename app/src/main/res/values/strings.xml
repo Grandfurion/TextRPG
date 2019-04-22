@@ -3179,6 +3179,9 @@ cвернете к озеру - 12.
     <string name="inventory_fortune">Удача</string>
     <string name="inventory_add_item">Добавить предмет?</string>
     <string name="inventory_use_drop_item">Исполльзовать/Выбросить предмет?</string>
+    <string name="inventory_add_spell">Добавить заклинание?</string>
+    <string name="inventory_use_spell">Использовать заклинание?</string>
+
 
     <string name="luck_check_true">Вы удачливы</string>
     <string name="luck_check_false">Вы неудачливы</string>
@@ -3191,10 +3194,10 @@ cвернете к озеру - 12.
 
     <string name="spell_fire">Заклятия огня</string>
     <string name="spell_illusion">Заклятия иллюзии</string>
-    <string name="spell_srenght">Заклятия силы</string>
-    <string name="spell_weaknes">Заклятия слабости</string>
-    <string name="spell_swiming">Заклятия плавания</string>
-    <string name="spell_hiling">Заклятия исцеления</string>
+    <string name="spell_strenght">Заклятия силы</string>
+    <string name="spell_weakness">Заклятия слабости</string>
+    <string name="spell_sweem">Заклятия плавания</string>
+    <string name="spell_healing">Заклятия исцеления</string>
     <string name="spell_levitation">Заклятия левитации</string>
 
 </resources>
