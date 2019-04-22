@@ -1,6 +1,9 @@
 package yaros.com.textrpg.Ui;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +16,12 @@ import yaros.com.textrpg.Battle.Battle;
 import yaros.com.textrpg.Characters.MainCharacter;
 import yaros.com.textrpg.R;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +39,7 @@ public class PageFragment extends Fragment {
 
     public static boolean strenghtSpell;
     public static boolean weaknessSpell;
+    public static int DIALOG_CHOOSE_SPELLS = 1;
 
     public static TextView pageText;
 
@@ -53,7 +59,7 @@ public class PageFragment extends Fragment {
         }else if(id == 126){
             MainActivity.mainCharacter.sword = "Меч Зеленого Рыцаря";
         }
-        //if (id = )//VPISAT` GLAVI AKTIVACII SPELOV!!
+
 
 
         pageText.setText("Глава: " + id + "\n" + getString(MainActivity.chapters.get(id).CHAPTER_TEXT));
@@ -62,6 +68,11 @@ public class PageFragment extends Fragment {
         }
 
         int j = 0;
+
+        if (id == 0){ //VPISAT` GLAVI AKTIVACII SPELOV!!
+
+            j++;
+        }
 
         if (MainActivity.battleChapters.get(id) != null){
             buttons.get(j).setText("Начать Битву");
@@ -123,4 +134,5 @@ public class PageFragment extends Fragment {
     /*public void hideLayoutBattleFragment(){
 
     }*/
+
 }
