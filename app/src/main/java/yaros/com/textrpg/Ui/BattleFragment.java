@@ -62,6 +62,8 @@ public class BattleFragment extends Fragment {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
             PageFragment.layoutBattleFragment.setVisibility(View.GONE);
             fm.findFragmentByTag(PageFragment.TAG);
+            PageFragment.weaknessSpell = false;
+            PageFragment.strenghtSpell = false;
             fm.beginTransaction().remove(PageFragment.currentBattleFragment).commit();
 
             }

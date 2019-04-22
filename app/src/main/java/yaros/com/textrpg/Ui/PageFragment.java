@@ -30,6 +30,9 @@ public class PageFragment extends Fragment {
     public static BattleFragment currentBattleFragment;
     public static ConstraintLayout layoutBattleFragment;
 
+    public static boolean strenghtSpell;
+    public static boolean weaknessSpell;
+
     public static int id = 0;
 
     public static PageFragment сreateFragment() {
@@ -46,6 +49,7 @@ public class PageFragment extends Fragment {
         }else if(id == 126){
             MainActivity.mainCharacter.sword = "Меч Зеленого Рыцаря";
         }
+        //if (id = )//VPISAT` GLAVI AKTIVACII SPELOV!!
 
 
         pageText.setText(MainActivity.chapters.get(id).CHAPTER_TEXT);

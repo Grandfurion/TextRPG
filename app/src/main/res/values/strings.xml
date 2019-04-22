@@ -3167,6 +3167,8 @@ cвернете к озеру - 12.
     <string name="inventory_stamina">Выносливость</string>
     <string name="inventory_mastery">Мастерство</string>
     <string name="inventory_fortune">Удача</string>
+    <string name="inventory_add_item">Добавить предмет?</string>
+    <string name="inventory_use_drop_item">Исполльзовать/Выбросить предмет?</string>
 
     <string name="luck_check_true">Вы удачливы</string>
     <string name="luck_check_false">Вы неудачливы</string>

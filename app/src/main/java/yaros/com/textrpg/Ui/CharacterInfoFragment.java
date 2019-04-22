@@ -82,12 +82,31 @@ public class CharacterInfoFragment extends Fragment {
             }
         });
 
+        Button addMoneyButton = getView().findViewById(R.id.buttonAddMoney);
+        addMoneyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.mainCharacter.money++;
+                CharacterInfoFragment.updateCharacterInfo();
+            }
+        });
+
+        Button getMoneyButton = getView().findViewById(R.id.buttonGetMoney);
+        getMoneyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.mainCharacter.money <=0 ){
+                    return;
+                }
+                MainActivity.mainCharacter.money--;
+                CharacterInfoFragment.updateCharacterInfo();
+            }
+        });
 
         Button buttonCheckFortune = getView().findViewById(R.id.buttonCheckFortune);
         buttonCheckFortune.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.mainCharacter.stamina--;
                 Toast ifLuck = new Toast(getContext());
                 if (MainActivity.mainCharacter.fortune <= 0){
                     ifLuck.makeText(getContext(), R.string.luck_check_no_fortune, Toast.LENGTH_SHORT).show();
@@ -110,10 +129,10 @@ public class CharacterInfoFragment extends Fragment {
 
         for (int i = 0; i < 10; i++){
             spells.add(getView().findViewById((getResources().getIdentifier(("textViewSpell" + i), "id", getContext().getPackageName()))));
-        }
+        }/*
         for (int i = 0; i < 9; i++){
             items.add(getView().findViewById((getResources().getIdentifier(("textViewInventory" + i), "id", getContext().getPackageName()))));
-        }
+        }*/
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -122,9 +141,8 @@ public class CharacterInfoFragment extends Fragment {
         AlertDialog alertDialog = onCreateDialog(DIALOG_ADD);
         AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
 
-        items = new ArrayList<TextView>(9);
-        for (int i = 0; i < 8; i++) {
-            items.add(getView().findViewById(this.getResources().getIdentifier(("informationText" + i),
+        for (int i = 0; i < 9; i++) {
+            items.add(getView().findViewById(this.getResources().getIdentifier(("textViewInventory" + i),
                     "id", getContext().getPackageName())));
             items.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,14 +153,14 @@ public class CharacterInfoFragment extends Fragment {
             });
         }
 
-        FloatingActionButton fab = getView().findViewById(R.id.informationFloatingActionButton);
+        FloatingActionButton fab = getView().findViewById(R.id.inventoryFloatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemNum < 9) {
                     alertDialog.show();
                 } else {
-                    Toast.makeText(getContext(), "максимум заметок", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Максимум предметов", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -180,7 +198,7 @@ public class CharacterInfoFragment extends Fragment {
             return adb.create();
         }else if (id == DIALOG_DELETE) {
             AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
-            adb.setMessage(R.string.information_delete_dialog_title);
+            adb.setMessage(R.string.inventory_use_drop_item);
             adb.setIcon(R.drawable.ic_information_24dp);
             adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerDeleteDialog);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerDeleteDialog);
@@ -209,7 +227,7 @@ public class CharacterInfoFragment extends Fragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
-                    for (int i = selectToDeleteTvNum; i < 9; i++){
+                    for (int i = selectToDeleteTvNum; i < 8; i++){
                         items.get(i).setText(items.get(i + 1).getText());
                     }
                     itemNum--;

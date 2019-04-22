@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,9 @@ public class InformationFragment extends Fragment {
 
     public final int DIALOG_ADD = 1;
     public final int DIALOG_DELETE = 2;
+    public final int DIALOG_MOVETO = 3;
+
+    public static Button moveToButton;
 
     static EditText editText;
 
@@ -54,6 +59,14 @@ public class InformationFragment extends Fragment {
         AlertDialog alertDialog = onCreateDialog(DIALOG_ADD);
         AlertDialog alertDialogDelete =  onCreateDialog(DIALOG_DELETE);
 
+        moveToButton = getView().findViewById(R.id.moveToFloatingActionButton);
+        moveToButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         informations = new ArrayList<TextView>(15);
         for (int i = 0; i < 15; i++) {
             informations.add(getView().findViewById(this.getResources().getIdentifier(("informationText" + i),
@@ -74,7 +87,7 @@ public class InformationFragment extends Fragment {
                 if (informNum < 14) {
                     alertDialog.show();
                 } else {
-                    Toast.makeText(getContext(), "максимум заметок", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Максимум заметок", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -101,6 +114,17 @@ public class InformationFragment extends Fragment {
             adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerDeleteDialog);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerDeleteDialog);
             return adb.create();
+        }else if (id == DIALOG_MOVETO){
+            AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+            adb.setMessage(R.string.information_delete_dialog_title);
+            adb.setIcon(R.drawable.ic_arrow_24dp);
+            adb.setPositiveButton(R.string.dialog_delete_negative_button, myClickListenerMoveToDialog);
+            adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerMoveToDialog);
+            EditText dialogEditText = new EditText(getContext());
+            dialogEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            adb.setView(dialogEditText);
+            editText = dialogEditText;
+            return adb.create();
         }
         return onCreateDialog(id);
     }
@@ -122,6 +146,23 @@ public class InformationFragment extends Fragment {
     };
 
     DialogInterface.OnClickListener myClickListenerDeleteDialog = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case Dialog.BUTTON_POSITIVE:
+                    for (int i = selectToDeleteTvNum; i < 14; i++){
+                        informations.get(i).setText(informations.get(i + 1).getText());
+                    }
+                    informNum--;
+                    informations.get(informNum).setText("");
+                    informations.get(informNum).setVisibility(View.GONE);
+                    break;
+                case Dialog.BUTTON_NEGATIVE:
+                    break;
+            }
+        }
+    };
+
+    DialogInterface.OnClickListener myClickListenerMoveToDialog = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:

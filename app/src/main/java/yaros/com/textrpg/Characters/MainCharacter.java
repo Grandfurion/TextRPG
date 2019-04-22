@@ -89,7 +89,6 @@ public class MainCharacter {
 
     public void Fill(Context context){
         if (flask <2 ){
-            //SOZDANIE DIALOGA
             AlertDialog fillDialog = onCreateDialog(DIALOG_FILL, context);
             fillDialog.show();
         }else {
