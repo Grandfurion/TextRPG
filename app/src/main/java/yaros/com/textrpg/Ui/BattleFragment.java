@@ -53,22 +53,23 @@ public class BattleFragment extends Fragment {
             battle.MainModBattle();
             //battle.battleLog.clearComposingText();
         }
-        Button battleEndBattle = getView().findViewById(R.id.buttonEndBattle);
-        battleEndBattle.setVisibility(View.VISIBLE);
-        battleEndBattle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-            PageFragment.layoutBattleFragment.setVisibility(View.GONE);
-            fm.findFragmentByTag(PageFragment.TAG);
-            PageFragment.weaknessSpell = false;
-            PageFragment.strenghtSpell = false;
-            fm.beginTransaction().remove(PageFragment.currentBattleFragment).commit();
+        if (MainActivity.mainCharacter.stamina > 0) {
+            Button battleEndBattle = getView().findViewById(R.id.buttonEndBattle);
+            battleEndBattle.setVisibility(View.VISIBLE);
+            battleEndBattle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    PageFragment.layoutBattleFragment.setVisibility(View.GONE);
+                    fm.findFragmentByTag(PageFragment.TAG);
+                    PageFragment.weaknessSpell = false;
+                    PageFragment.strenghtSpell = false;
+                    fm.beginTransaction().remove(PageFragment.currentBattleFragment).commit();
 
-            }
-        });
-
+                }
+            });
+        }
         super.onViewCreated(view, savedInstanceState);
     }
 }
