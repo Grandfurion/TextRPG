@@ -45,6 +45,7 @@ public class CharacterInfoFragment extends Fragment {
     static int spellNum;
 
     static EditText editText;
+    static EditText editTextSpells;
 
     static int selectToDeleteTvNum;
     static int selectToDeleteTvNumSpell;
@@ -242,9 +243,9 @@ public class CharacterInfoFragment extends Fragment {
             AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
             adb.setTitle(R.string.inventory_add_spell);
             adb.setMessage(R.string.information_dialog_message);
-            EditText dialogEditText = new EditText(getContext());
-            adb.setView(dialogEditText);
-            editText = dialogEditText;
+            EditText dialogSpellEditText = new EditText(getContext());
+            adb.setView(dialogSpellEditText);
+            editTextSpells = dialogSpellEditText;
             adb.setIcon(R.drawable.ic_information_24dp);
             adb.setPositiveButton(R.string.dialog_positive_button, myClickListenerAddSpell);
             adb.setNegativeButton(R.string.dialog_negative_button, myClickListenerAddSpell);
@@ -281,9 +282,9 @@ public class CharacterInfoFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case Dialog.BUTTON_POSITIVE:
-                        if (!editText.getText().toString().equals("")) {
+                        if (!editTextSpells.getText().toString().equals("")) {
                             spells.get(spellNum).setVisibility(View.VISIBLE);
-                            spells.get(spellNum).setText(editText.getText());
+                            spells.get(spellNum).setText(editTextSpells.getText());
                             spellNum++;
                         }
                         break;
